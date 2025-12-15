@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/GraduateProject.dir/main.cpp.o CMakeFiles/GraduateProject.dir/CommandAndControl.cpp.o CMakeFiles/GraduateProject.dir/CommandCore.cpp.o CMakeFiles/GraduateProject.dir/lua_driver.cpp.o -o GraduateProject   -L/opt/homebrew/opt/lua/lib  -Wl,-rpath,/opt/homebrew/opt/lua/lib -llua

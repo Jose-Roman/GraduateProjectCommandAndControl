@@ -1,0 +1,3 @@
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/GraduateProject.dir
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
