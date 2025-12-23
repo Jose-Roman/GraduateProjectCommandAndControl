@@ -2,12 +2,12 @@
 // Created by Jose Roman  on 12/22/25.
 //
 
-#ifndef
-#define 
+#ifndef COMMANDEXECUTOR_H
+#define COMMANDEXECUTOR_H
 
 
 class CommandExecutor {
 };
 
 
-#endif //
+#endif //COMMANDEXECUTOR_H

@@ -2,12 +2,12 @@
 // Created by Jose Roman  on 12/22/25.
 //
 
-#ifndef
-#define 
+#ifndef SENSORDATA_H
+#define SENSORDATA_H
 
 
 class SensorData {
 };
 
 
-#endif //
+#endif //SENSORDATA_H

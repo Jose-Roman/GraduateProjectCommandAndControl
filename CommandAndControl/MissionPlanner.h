@@ -2,12 +2,12 @@
 // Created by Jose Roman  on 12/22/25.
 //
 
-#ifndef
-#define 
+#ifndef MISSIONPLANNER_H
+#define MISSIONPLANNER_H
 
 
 class MissionPlanner {
 };
 
 
-#endif //
+#endif // MISSIONPLANNER_H

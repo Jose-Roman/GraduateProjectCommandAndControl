@@ -25,7 +25,9 @@ class Messaging {
         ~Messaging() = default;
 
         //Publish a message to all subscribers of the topic
-        void publish(const Message& msg);
+    void publish(const std::string& topic,
+                 const std::string& payload,
+                 const std:: string& source);
 
         //Subscribe to a callback of a specific topic
         void subscribe(const std::string& topic, Callback cb);
@@ -33,6 +35,7 @@ class Messaging {
     private:
         std::unordered_map<std::string, std::vector<Callback>> subscribers_;
         int messageCounter_ = 0;
+        int getTimestamp();
 };
 
 #endif // MESSAGING_H

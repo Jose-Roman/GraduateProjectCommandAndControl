@@ -2,12 +2,12 @@
 // Created by Jose Roman  on 12/22/25.
 //
 
-#ifndef
-#define 
+#ifndef TARGETTRACKER_H
+#define TARGETTRACKER_H
 
 
 class TargetTracker {
 };
 
 
-#endif //
+#endif //TARGETTRACKER_H
