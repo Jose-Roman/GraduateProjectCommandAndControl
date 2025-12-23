@@ -14,7 +14,20 @@ add_executable(GraduateProject main.cpp
         CommandAndControl.h
         CommandCore.cpp
         CommandCore.h
-        lua_driver.cpp)
+        lua_driver.cpp
+        main.cpp
+        main.cpp
+        main.cpp
+        CommandAndControl/Messaging.cpp
+        CommandAndControl/Messaging.h
+        CommandAndControl/MissionPlanner.cpp
+        CommandAndControl/MissionPlanner.h
+        CommandAndControl/TargetTracker.cpp
+        CommandAndControl/TargetTracker.h
+        CommandAndControl/SensorData.cpp
+        CommandAndControl/SensorData.h
+        CommandAndControl/CommandExecutor.cpp
+        CommandAndControl/CommandExecutor.h)
 
 
 # Link Lua library AFTER add_executable
