@@ -25,9 +25,7 @@ class Messaging {
         ~Messaging() = default;
 
         //Publish a message to all subscribers of the topic
-    void publish(const std::string& topic,
-                 const std::string& payload,
-                 const std:: string& source);
+    void publish(Message& msg);
 
         //Subscribe to a callback of a specific topic
         void subscribe(const std::string& topic, Callback cb);

@@ -7,7 +7,6 @@
 #include <string>
 #include "Messaging.h"
 
-
 class CommandExecutor {
     public:
         explicit  CommandExecutor(Messaging& messaging);
@@ -18,9 +17,7 @@ class CommandExecutor {
     private:
         Messaging& messaging_;
 
-        void onCommandMessage(const Message& msg);
-
+        void onCommandReceived(const Message& msg) const;
 };
-
 
 #endif //COMMANDEXECUTOR_H

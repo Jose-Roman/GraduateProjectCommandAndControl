@@ -6,15 +6,9 @@
 #include <iostream>
 #include <chrono>
 
-void Messaging::publish(const std::string& topic,
-                        const std::string& payload,
-                        const std:: string& source) {
-    Message msg;
+void Messaging::publish(Message& msg) {
     msg.messageId = ++messageCounter_;
     msg.timestamp = getTimestamp();
-    msg.topic = topic;
-    msg.payload = payload;
-    msg.source = source;
 
     // Log Message
     std::cout << "[Messaging::publish] "
@@ -25,7 +19,7 @@ void Messaging::publish(const std::string& topic,
                 << std::endl;
 
     // Callback
-    auto it = subscribers_.find(topic);
+    auto it = subscribers_.find(msg.topic);
     if (it != subscribers_.end()) {
         for (const auto& callback : it->second) {
             callback(msg);
