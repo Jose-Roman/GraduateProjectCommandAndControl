@@ -27,10 +27,10 @@ class TargetTracker {
         Messaging& messaging_;
 
         // Handles incoming sensor data messages
-        void onSensorDataReceived();
+        void onSensorDataReceived(const Message& msg);
 
         // simulates the target tracking logic
-        Target trackTarget;
+        Target trackTarget();
 };
 
 #endif //TARGETTRACKER_H
