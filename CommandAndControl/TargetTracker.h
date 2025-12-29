@@ -5,9 +5,32 @@
 #ifndef TARGETTRACKER_H
 #define TARGETTRACKER_H
 
+#include "Messaging.h"
 
-class TargetTracker {
+// Data structure representing a tracked target
+struct Target {
+    // Includes a Target ID, and positioning info (x,y)
+    int id;
+    double x;
+    double y;
 };
 
+class TargetTracker {
+    public:
+        // Constructor takes a reference to the messaging system
+        explicit TargetTracker(Messaging& messaging);
+
+        // Registers subscriptions needed for target tracking
+        void initialize();
+
+    private:
+        Messaging& messaging_;
+
+        // Handles incoming sensor data messages
+        void onSensorDataReceived();
+
+        // simulates the target tracking logic
+        Target trackTarget;
+};
 
 #endif //TARGETTRACKER_H
