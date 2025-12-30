@@ -12,12 +12,13 @@
 class MissionPlanner {
     public:
         // Constructor that accepts a reference to the messaging system
-        explicit MissionPlanner(Messaging& messaging);
+        explicit MissionPlanner(Messaging& messaging, TargetTracker& tracker);
 
         // Registers the MissionPlanner to receive targer tracking updates
         void initialize();
     private:
         Messaging& messaging_;
+        TargetTracker& tracker_;
 
         // Callback invoked when a target tracking message is received
         void onTargetReceived(const Message& msg) const;

@@ -23,14 +23,14 @@ class TargetTracker {
         // Registers subscriptions needed for target tracking
         void initialize();
 
+        // simulates the target tracking logic
+        Target trackTarget();
+
     private:
         Messaging& messaging_;
 
         // Handles incoming sensor data messages
         void onSensorDataReceived(const Message& msg);
-
-        // simulates the target tracking logic
-        Target trackTarget();
 };
 
 #endif //TARGETTRACKER_H
