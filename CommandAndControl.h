@@ -6,5 +6,6 @@
 #define GRADUATEPROJECT_COMMANDANDCONTROL_H
 
 void helloWorld();
+void runCommandAndControl();
 
 #endif //GRADUATEPROJECT_COMMANDANDCONTROL_H

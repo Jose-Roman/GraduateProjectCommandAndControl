@@ -3,5 +3,6 @@
 
 int main() {
     helloWorld();
+    runCommandAndControl();
     return 0;
 }

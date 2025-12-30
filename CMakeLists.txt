@@ -30,5 +30,8 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/CommandExecutor.h)
 
 
+target_include_directories(GraduateProject PRIVATE
+                            ${CMAKE_CURRENT_SOURCE_DIR}/CommandAndControl)
+
 # Link Lua library AFTER add_executable
 target_link_libraries(GraduateProject lua)
