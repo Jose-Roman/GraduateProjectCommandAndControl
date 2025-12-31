@@ -33,6 +33,7 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
     payload << "Target ID = " << track.id
             << " Position = ("<< track.x  << ", " << track.y << ")";
     targetMsg.payload = payload.str();
+    targetMsg.source = "TargetTracker";
 
     messaging_.publish(targetMsg);
 }
