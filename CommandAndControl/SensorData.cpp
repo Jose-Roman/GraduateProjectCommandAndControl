@@ -31,7 +31,7 @@ void SensorData::publishSensorData() {
                 << reading.value << std::endl;
 
     Message msg;
-    msg.topic = "SensorUpdate";
+    msg.topic = "sensor.data";
     msg.payload = reading.sensorName + " = " + std::to_string(reading.value);
     msg.source = "SensorData";
 

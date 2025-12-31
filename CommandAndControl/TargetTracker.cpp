@@ -27,11 +27,11 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
 
     Target track = trackTarget();
     Message targetMsg;
-    targetMsg.topic = "Target Tracked";
+    targetMsg.topic = "target.update";
 
     std::ostringstream payload;
     payload << "Target ID = " << track.id
-            << "Position = ("<< track.x  << ", " << track.y << ")";
+            << " Position = ("<< track.x  << ", " << track.y << ")";
     targetMsg.payload = payload.str();
 
     messaging_.publish(targetMsg);

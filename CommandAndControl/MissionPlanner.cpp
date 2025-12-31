@@ -38,7 +38,7 @@ void MissionPlanner::planMission(const Target &track) const {
 
     // Create a command message for the CommandExecutor
     Message commandMsg;
-    commandMsg.topic = "Command Execute";
+    commandMsg.topic = "command.execute";
     commandMsg.payload = "Engage Target";
     commandMsg.source = "MissionPlanner";
 

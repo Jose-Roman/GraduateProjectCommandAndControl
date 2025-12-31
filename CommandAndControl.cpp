@@ -38,5 +38,4 @@ void runCommandAndControl() {
     std::cout << "---- [CommandAndControl] Initial Sensor Read ----" << std::endl;
     sensorData.publishSensorData();
     std::cout << "---- [CommandAndControl] Completed ----" << std::endl;
-
 }
