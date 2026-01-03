@@ -18,7 +18,7 @@ void MissionPlanner::initialize() {
 }
 
 // Handles incoming target tracking messgaes
-void MissionPlanner::onTargetReceived(const Message& msg) const {
+void MissionPlanner::onTargetReceived(const Message& msg) {
     std::cout << "[MissionPlanner] Target update received: "
                 << msg.payload << std::endl;
 
@@ -29,12 +29,14 @@ void MissionPlanner::onTargetReceived(const Message& msg) const {
 }
 
 // Generates a simple mission plan based on the target
-void MissionPlanner::planMission(const Target &track) const {
+void MissionPlanner::planMission(Target &track) {
+    track.numOfUpdates = ++track.numOfUpdates;
     std::cout << "[MissionPlanner] Planning Mission for Target: "
                 << track.id << " at ("
                 << track.x << ", "
                 << track.y << ")"
                 << std::endl;
+    //std::cout << "[MissionPlanner] Num of Updates: " << track.numOfUpdates << std::endl;
 
     // Create a command message for the CommandExecutor
     Message commandMsg;

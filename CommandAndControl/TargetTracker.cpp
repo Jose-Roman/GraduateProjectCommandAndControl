@@ -49,6 +49,8 @@ Target TargetTracker::trackTarget() {
     target.id = ++targetCounter;
     target.x = 100.0;
     target.y = 200.0;
+    target.numOfUpdates = 0; // initialize
 
-    std::cout << "[TargetTracker] Tracking Target:" << target.id << std::endl;
+    std::cout << "[TargetTracker] Tracking Target: " << target.id << std::endl;
+    return target;
 }

@@ -21,10 +21,10 @@ class MissionPlanner {
         TargetTracker& tracker_;
 
         // Callback invoked when a target tracking message is received
-        void onTargetReceived(const Message& msg) const;
+        void onTargetReceived(const Message& msg);
 
         // Creates and publishes a command based on target data
-        void planMission(const Target& track) const;
+        void planMission(Target& track);
 };
 
 

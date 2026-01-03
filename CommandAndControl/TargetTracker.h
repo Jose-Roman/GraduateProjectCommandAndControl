@@ -13,6 +13,7 @@ struct Target {
     int id;
     double x;
     double y;
+    int numOfUpdates;
 };
 
 class TargetTracker {

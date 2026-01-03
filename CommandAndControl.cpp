@@ -35,7 +35,7 @@ void runCommandAndControl() {
     missionPlanner.initialize();
 
     // Kick off the system
-    std::cout << "---- [CommandAndControl] Initial Sensor Read ----" << std::endl;
+    std::cout << "******** ---- [CommandAndControl] Initial Sensor Read ---- ********" << std::endl;
     sensorData.publishSensorData();
-    std::cout << "---- [CommandAndControl] Completed ----" << std::endl;
+    std::cout << "******** ---- [CommandAndControl] Completed ---- ********" << std::endl;
 }
