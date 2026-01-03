@@ -17,6 +17,12 @@ void MissionPlanner::initialize() {
                         });
 }
 
+void MissionPlanner::setMission(const Mission &mission) {
+    currentMission_ = mission;
+    std::cout << "[MissionPlanner] Mission set to: "
+                << currentMission_.name << std::endl;
+}
+
 // Handles incoming target tracking messgaes
 void MissionPlanner::onTargetReceived(const Message& msg) {
     std::cout << "[MissionPlanner] Target update received: "
@@ -45,4 +51,23 @@ void MissionPlanner::planMission(Target &track) {
     commandMsg.source = "MissionPlanner";
 
     messaging_.publish(commandMsg);
+}
+
+void MissionPlanner::planMissionArea(Target &target) {
+    target.numOfUpdates = ++target.numOfUpdates;
+
+    std::cout << "[MissionPlanner] Planning Mission Area: "
+                << currentMission_.name << std::endl;
+
+    switch (currentMission_.area) {
+        case MissionArea::LosAngeles:
+            std::cout << "[MissionPlanner] Los Angeles: Coastal air & maritme monitoring" << std::endl;
+            break;
+        case MissionArea::NewYork:
+            std::cout << "[MissionPlanner] New York: Dense urban airspace coordination" << std::endl;
+            break;
+        case MissionArea::Miami:
+            std::cout << "[MissionPlanner] Miami: Dense urban airspace coordination" << std::endl;
+            break;
+    }
 }

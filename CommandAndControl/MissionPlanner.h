@@ -28,15 +28,20 @@ class MissionPlanner {
 
         // Registers the MissionPlanner to receive targer tracking updates
         void initialize();
+
+        void setMission(const Mission& mission);
     private:
         Messaging& messaging_;
         TargetTracker& tracker_;
+        Mission currentMission_;
 
         // Callback invoked when a target tracking message is received
         void onTargetReceived(const Message& msg);
 
         // Creates and publishes a command based on target data
         void planMission(Target& track);
+
+        void planMissionArea(Target &target);
 };
 
 
