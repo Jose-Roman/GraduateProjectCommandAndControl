@@ -5,9 +5,21 @@
 #ifndef MISSIONPLANNER_H
 #define MISSIONPLANNER_H
 
+#pragma once
 #include <string>
 #include "Messaging.h"
 #include "TargetTracker.h"
+
+enum class MissionArea {
+    LosAngeles,
+    NewYork,
+    Miami
+};
+
+struct Mission {
+    MissionArea area;
+    std::string name;
+};
 
 class MissionPlanner {
     public:

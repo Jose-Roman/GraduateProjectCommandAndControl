@@ -38,3 +38,22 @@ void SensorData::publishSensorData() {
     // Publish message
     messaging_.publish(msg);
 }
+
+void SensorData::startSensor(const Mission& mission) {
+    std::cout << "[SensorData] Starting Sensor for mission: "
+                << mission.name << std::endl;
+
+    Message msg;
+    msg.topic = "sensor.target.detected";
+    msg.source = "SensorData";
+
+    // Plane
+    msg.payload = mission.name + ":Plane";
+    messaging_.publish(msg);
+    // Ship
+    msg.payload = mission.name + ":Ship";
+    messaging_.publish(msg);
+    // Missile
+    msg.payload = mission.name + ":Missile";
+    messaging_.publish(msg);
+}

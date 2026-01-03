@@ -54,3 +54,13 @@ Target TargetTracker::trackTarget() {
     std::cout << "[TargetTracker] Tracking Target: " << target.id << std::endl;
     return target;
 }
+
+std::string serializeTarget(const Target& target) {
+    std::ostringstream oss;
+    oss << target.id << ","
+        <<static_cast<int>(target.type) << ","
+        <<target.x << ","
+        <<target.y << ","
+        <<target.numOfUpdates;
+    return oss.str();
+}

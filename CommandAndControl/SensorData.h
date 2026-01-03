@@ -7,6 +7,8 @@
 #include "Messaging.h"
 #include <string>
 
+#include "MissionPlanner.h"
+
 // Struct representing a sensor reading
 struct SensorReading {
     std::string sensorName;
@@ -27,6 +29,8 @@ class SensorData {
 
         // Publishes a sensor update message
         void publishSensorData();
+
+        void startSensor(const Mission& mission);
 
     private:
         Messaging& messaging_;

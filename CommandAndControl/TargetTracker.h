@@ -6,11 +6,20 @@
 #define TARGETTRACKER_H
 
 #include "Messaging.h"
+#pragma once
+#include <string>
+
+enum class TargetType {
+    Plane,
+    Ship,
+    Missile
+};
 
 // Data structure representing a tracked target
 struct Target {
     // Includes a Target ID, and positioning info (x,y)
     int id;
+    TargetType type;
     double x;
     double y;
     int numOfUpdates;
@@ -26,6 +35,8 @@ class TargetTracker {
 
         // simulates the target tracking logic
         Target trackTarget();
+
+        std::string serializeTarget(const Target& target);
 
     private:
         Messaging& messaging_;
