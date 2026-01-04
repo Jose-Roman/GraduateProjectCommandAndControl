@@ -8,7 +8,10 @@
 #pragma once
 #include <string>
 #include "Messaging.h"
-#include "TargetTracker.h"
+#include "MissionPlanner.h"
+
+class TargetTracker;
+class Target;
 
 enum class MissionArea {
     LosAngeles,

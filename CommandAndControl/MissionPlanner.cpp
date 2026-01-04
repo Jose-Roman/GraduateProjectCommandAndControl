@@ -3,6 +3,7 @@
 //
 
 #include "MissionPlanner.h"
+#include "TargetTracker.h"
 #include <iostream>
 
 // Constructor
@@ -29,7 +30,7 @@ void MissionPlanner::onTargetReceived(const Message& msg) {
                 << msg.payload << std::endl;
 
     // For this initial prototype, simulate extracting target data
-    Target target = tracker_.trackTarget();
+    Target target = tracker_.deserializeTarget(msg.payload);
 
     planMission(target);
 }
@@ -39,8 +40,8 @@ void MissionPlanner::planMission(Target &track) {
     track.numOfUpdates = ++track.numOfUpdates;
     std::cout << "[MissionPlanner] Planning Mission for Target: "
                 << track.id << " at ("
-                << track.x << ", "
-                << track.y << ")"
+                << track.latitude << ", "
+                << track.longitude << ")"
                 << std::endl;
     //std::cout << "[MissionPlanner] Num of Updates: " << track.numOfUpdates << std::endl;
 

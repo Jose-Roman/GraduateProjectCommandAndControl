@@ -27,7 +27,9 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/SensorData.cpp
         CommandAndControl/SensorData.h
         CommandAndControl/CommandExecutor.cpp
-        CommandAndControl/CommandExecutor.h)
+        CommandAndControl/CommandExecutor.h
+        CommandAndControl/Geography.cpp
+        CommandAndControl/Geography.h)
 
 
 target_include_directories(GraduateProject PRIVATE

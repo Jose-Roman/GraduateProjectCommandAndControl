@@ -7,5 +7,6 @@
 
 void helloWorld();
 void runCommandAndControl();
+void runMission();
 
 #endif //GRADUATEPROJECT_COMMANDANDCONTROL_H

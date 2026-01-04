@@ -3,6 +3,7 @@
 
 int main() {
     helloWorld();
-    runCommandAndControl();
+    //runCommandAndControl();
+    runMission();
     return 0;
 }

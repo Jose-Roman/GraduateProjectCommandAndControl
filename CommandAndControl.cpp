@@ -10,6 +10,7 @@
 #include "TargetTracker.h"
 #include "MissionPlanner.h"
 #include "SensorData.h"
+#include "Geography.h"
 
 void helloWorld() {
     std::cout << "Hello World from CommandAndControl!" << std::endl;
@@ -21,11 +22,12 @@ void runCommandAndControl() {
 
     // Create shared Messaging helper
     Messaging msg;
+    Geography geo;
 
     // Create system components
     CommandExecutor commandExecutor(msg);
     SensorData sensorData(msg);
-    TargetTracker targetTracker(msg);
+    TargetTracker targetTracker(msg, geo);
     MissionPlanner missionPlanner(msg, targetTracker);
 
     // Initialize subscriptions for messaging system
@@ -38,4 +40,30 @@ void runCommandAndControl() {
     std::cout << "******** ---- [CommandAndControl] Initial Sensor Read ---- ********" << std::endl;
     sensorData.publishSensorData();
     std::cout << "******** ---- [CommandAndControl] Completed ---- ********" << std::endl;
+}
+
+void runMission() {
+    std::cout << "---- Starting Command and Control Mission System ----" << std::endl;
+
+    // Create shared Messaging helper
+    Messaging msg;
+    Geography geo;
+
+    // Create system components
+    CommandExecutor commandExecutor(msg);
+    SensorData sensorData(msg);
+    TargetTracker targetTracker(msg, geo);
+    MissionPlanner missionPlanner(msg, targetTracker);
+
+    // Initialize subscriptions for messaging system
+    commandExecutor.initialize();
+    sensorData.initialize();
+    targetTracker.initialize();
+    missionPlanner.initialize();
+
+    Mission LosAngeles {MissionArea::LosAngeles, "Los Angeles"};
+
+    sensorData.startSensor(LosAngeles);
+
+    std::cout << "******** ---- [CommandAndControl] Mission Completed ---- ********" << std::endl;
 }
