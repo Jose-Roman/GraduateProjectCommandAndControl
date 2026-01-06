@@ -75,7 +75,7 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
 // TODO : make a helper randomizer script that will generate simulated
 // data that gives us long, lat, etc position values to simulate
 // real world command and control environment
-Target TargetTracker::trackTarget(MissionArea& area, TargetType& track) {
+Target TargetTracker::trackTarget(MissionArea area, TargetType track) {
     static int targetCounter = 0;
 
     GeoBounds bounds = geography_.getGioBounds(area);

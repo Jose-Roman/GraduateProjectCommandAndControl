@@ -62,8 +62,15 @@ void runMission() {
     missionPlanner.initialize();
 
     Mission LosAngeles {MissionArea::LosAngeles, "Los Angeles"};
+    LosAngeles.targetCounts = {
+        {TargetType::Plane, 4},
+        {TargetType::Ship, 3},
+        {TargetType::Missile, 2}
+    };
 
-    sensorData.startSensor(LosAngeles);
+    //sensorData.startSensor(LosAngeles);
+
+    missionPlanner.setMission(LosAngeles);
 
     std::cout << "******** ---- [CommandAndControl] Mission Completed ---- ********" << std::endl;
 }

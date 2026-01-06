@@ -9,19 +9,20 @@
 #include <string>
 #include "Messaging.h"
 #include "MissionPlanner.h"
+#include <map>
+#include <Types.h>
+
+#include "TargetTracker.h"
 
 class TargetTracker;
-class Target;
 
-enum class MissionArea {
-    LosAngeles,
-    NewYork,
-    Miami
-};
+class Target;
 
 struct Mission {
     MissionArea area;
     std::string name;
+
+    std::map<TargetType, int> targetCounts;
 };
 
 class MissionPlanner {

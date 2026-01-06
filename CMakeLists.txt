@@ -29,7 +29,8 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/CommandExecutor.cpp
         CommandAndControl/CommandExecutor.h
         CommandAndControl/Geography.cpp
-        CommandAndControl/Geography.h)
+        CommandAndControl/Geography.h
+        CommandAndControl/Types.h)
 
 
 target_include_directories(GraduateProject PRIVATE

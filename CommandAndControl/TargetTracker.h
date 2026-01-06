@@ -6,18 +6,11 @@
 #define TARGETTRACKER_H
 
 #include "Messaging.h"
-#include "MissionPlanner.h"
-#include "TargetTracker.h"
 #pragma once
 #include <string>
+#include <Types.h>
 
 class Geography;
-
-enum class TargetType {
-    Plane,
-    Ship,
-    Missile
-};
 
 // Data structure representing a tracked target
 struct Target {
@@ -42,7 +35,7 @@ class TargetTracker {
         void initialize();
 
         // simulates the target tracking logic
-        Target trackTarget(MissionArea& area, TargetType& track);
+        Target trackTarget(MissionArea area, TargetType track);
 
         std::string serializeTarget(const Target& target);
         Target deserializeTarget(const std::string& payload);

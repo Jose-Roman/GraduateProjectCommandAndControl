@@ -22,6 +22,14 @@ void MissionPlanner::setMission(const Mission &mission) {
     currentMission_ = mission;
     std::cout << "[MissionPlanner] Mission set to: "
                 << currentMission_.name << std::endl;
+
+    // Generate requested targets
+    for (const auto& [type, count] : mission.targetCounts) {
+        for (int i = 0; i < count; ++i) {
+            Target target = tracker_.trackTarget(currentMission_.area, type);
+            planMission(target);
+        }
+    }
 }
 
 // Handles incoming target tracking messgaes
