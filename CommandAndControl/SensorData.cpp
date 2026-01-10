@@ -57,3 +57,4 @@ void SensorData::startSensor(const Mission& mission) {
     msg.payload = mission.name + ":Missile";
     messaging_.publish(msg);
 }
+
