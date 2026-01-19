@@ -3,29 +3,26 @@
 //
 
 #include "GenerateScenario.h"
-#include "MissionPlanner.h"
 #include "SensorData.h"
 #include <iostream>
 
-GenerateScenario::GenerateScenario(MissionPlanner &planner, SensorData &sensor)
-    : planner_(planner), sensor_(sensor) {}
 
-void GenerateScenario::setLocation(MissionArea area) {
-    area_ = area;
+GenerateScenario::GenerateScenario(SensorData& sensor) : sensor_(sensor) {}
+
+void GenerateScenario::setMissionArea(MissionArea area) {
+    mission_.area = area;
 }
 
-void GenerateScenario::setTargetCount(TargetType type, int count) {
-    targetCounts_[type] = count;
+void GenerateScenario::setTargets(const std::map<TargetType, int>& targets) {
+    mission_.targetCounts = targets;
+}
+
+void GenerateScenario::setMissionName(std::string name) {
+    mission_.name = name;
 }
 
 void GenerateScenario::startScenario() {
-    std::cout << "[GenerateScenario] Starting scenario ..." << std::endl;
+    std::cout << "[GenerateScenario] Starting Scenario for " << mission_.name << std::endl;
 
-    Mission startMission;
-    startMission.area = area_;
-    startMission.targetCounts = targetCounts_;
-
-    planner_.setMission(startMission);
-
-    sensor_.startSensor(startMission);
+    sensor_.startSensor(mission_);
 }

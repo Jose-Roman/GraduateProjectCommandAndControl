@@ -39,7 +39,7 @@ void SensorData::publishSensorData() {
     messaging_.publish(msg);
 }
 
-void SensorData::startSensor(const Mission& mission) {
+void SensorData::startSensorTwo(const Mission& mission) {
     std::cout << "[SensorData] Starting Sensor for mission: "
                 << mission.name << std::endl;
 
@@ -58,3 +58,18 @@ void SensorData::startSensor(const Mission& mission) {
     messaging_.publish(msg);
 }
 
+
+void SensorData::startSensor(const Mission& mission) {
+    std::cout << "[SensorData] Starting Sensor for mission" << std::endl;
+
+    for (const auto& [type, count] : mission.targetCounts) {
+        for (int i = 0; i < count; i++) {
+            Message msg;
+            msg.topic = "sensor.target.detected";
+            msg.payload = std::to_string(static_cast<int>(type));
+            msg.source = "SensorData";
+            messaging_.publish(msg);
+        }
+
+    }
+}

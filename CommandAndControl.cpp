@@ -7,6 +7,7 @@
 
 #include "Messaging.h"
 #include "CommandExecutor.h"
+#include "GenerateScenario.h"
 #include "TargetTracker.h"
 #include "MissionPlanner.h"
 #include "SensorData.h"
@@ -54,6 +55,7 @@ void runMission() {
     SensorData sensorData(msg);
     TargetTracker targetTracker(msg, geo);
     MissionPlanner missionPlanner(msg, targetTracker);
+    GenerateScenario genScenStart(sensorData);
 
     // Initialize subscriptions for messaging system
     commandExecutor.initialize();
@@ -65,12 +67,17 @@ void runMission() {
     LosAngeles.targetCounts = {
             {TargetType::Plane, 4},
             {TargetType::Ship, 3},
-            {TargetType::Missile, 2}
+            {TargetType::Missile, 1}
     };
 
     //sensorData.startSensor(LosAngeles);
 
-    missionPlanner.setMission(LosAngeles);
+    //missionPlanner.setMission(LosAngeles);
+
+    genScenStart.setMissionName(LosAngeles.name);
+    genScenStart.setMissionArea(LosAngeles.area);
+    genScenStart.setTargets(LosAngeles.targetCounts);
+    genScenStart.startScenario();
 
     std::cout << "******** ---- [CommandAndControl] Mission Completed ---- ********" << std::endl;
 }

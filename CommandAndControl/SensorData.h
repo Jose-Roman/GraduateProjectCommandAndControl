@@ -32,6 +32,9 @@ class SensorData {
 
         void startSensor(const Mission& mission);
 
+        // temp
+        void startSensorTwo(const Mission& mission);
+
     private:
         Messaging& messaging_;
 };

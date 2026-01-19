@@ -7,26 +7,25 @@
 
 #include <map>
 #include <Types.h>
-#include "MissionPlanner.h"
+#include <MissionPlanner.h>
 
 class MissionPlanner;
 class SensorData;
 
 class GenerateScenario {
     public:
-        GenerateScenario(MissionPlanner& planner, SensorData& sensor);
-        void setLocation(MissionArea area);
-        void setTargetCount(TargetType type, int count);
+        explicit GenerateScenario(SensorData& sensor);
+        void setMissionArea(MissionArea area);
+        void setTargets(const std::map<TargetType, int>& targets);
+        void setMissionName(std::string name);
+
+        // entry point
         void startScenario();
 
     private:
-        MissionArea area_;
         Mission mission_;
-        std::map<TargetType, int> targetCounts_;
-
-        MissionPlanner& planner_;
         SensorData& sensor_;
-};
 
+};
 
 #endif // GENERATESCENARIO_H
