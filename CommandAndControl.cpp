@@ -66,7 +66,7 @@ void runMission() {
     Mission LosAngeles {MissionArea::LosAngeles, "Los Angeles"};
     LosAngeles.targetCounts = {
             {TargetType::Plane, 4},
-            {TargetType::Ship, 3},
+            {TargetType::Ship, 2},
             {TargetType::Missile, 1}
     };
 

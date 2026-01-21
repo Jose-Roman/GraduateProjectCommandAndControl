@@ -15,9 +15,6 @@ add_executable(GraduateProject main.cpp
         CommandCore.cpp
         CommandCore.h
         lua_driver.cpp
-        main.cpp
-        main.cpp
-        main.cpp
         CommandAndControl/Messaging.cpp
         CommandAndControl/Messaging.h
         CommandAndControl/MissionPlanner.cpp
