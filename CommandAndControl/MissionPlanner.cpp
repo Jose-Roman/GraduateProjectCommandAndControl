@@ -51,6 +51,11 @@ void MissionPlanner::planMission(Target &track) {
                 << track.latitude << ", "
                 << track.longitude << ")"
                 << std::endl;
+
+    std::cout << "[MissionPlanner] Target Altitude: " << track.altitude<< std::endl;
+    std::cout << "[MissionPlanner] Target Speed: " << track.speed << std::endl;
+
+
     //std::cout << "[MissionPlanner] Num of Updates: " << track.numOfUpdates << std::endl;
 
     // Create a command message for the CommandExecutor

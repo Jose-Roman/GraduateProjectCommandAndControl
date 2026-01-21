@@ -95,6 +95,7 @@ Target TargetTracker::trackTarget(MissionArea area, TargetType track) {
     target.numOfUpdates = 0; // initialize
 
     std::cout << "[TargetTracker] Tracking Target: " << target.id << std::endl;
+
     return target;
 }
 

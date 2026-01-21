@@ -55,7 +55,7 @@ void runMission() {
     SensorData sensorData(msg);
     TargetTracker targetTracker(msg, geo);
     MissionPlanner missionPlanner(msg, targetTracker);
-    GenerateScenario genScenStart(sensorData);
+    GenerateScenario genScenStart(sensorData, geo);
 
     // Initialize subscriptions for messaging system
     commandExecutor.initialize();
@@ -65,9 +65,9 @@ void runMission() {
 
     Mission LosAngeles {MissionArea::LosAngeles, "Los Angeles"};
     LosAngeles.targetCounts = {
-            {TargetType::Plane, 4},
-            {TargetType::Ship, 2},
-            {TargetType::Missile, 1}
+            {TargetType::Plane, 1},
+            {TargetType::Ship, 0},
+            {TargetType::Missile, 0}
     };
 
     //sensorData.startSensor(LosAngeles);

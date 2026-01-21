@@ -8,13 +8,14 @@
 #include <map>
 #include <Types.h>
 #include <MissionPlanner.h>
+#include <Geography.h>
 
 class MissionPlanner;
 class SensorData;
 
 class GenerateScenario {
     public:
-        explicit GenerateScenario(SensorData& sensor);
+        explicit GenerateScenario(SensorData& sensor, Geography& geography);
         void setMissionArea(MissionArea area);
         void setTargets(const std::map<TargetType, int>& targets);
         void setMissionName(std::string name);
@@ -25,6 +26,7 @@ class GenerateScenario {
     private:
         Mission mission_;
         SensorData& sensor_;
+        Geography& geography_;
 
 };
 

@@ -25,11 +25,17 @@ struct GeoKinematics {
     double maxSpeed;
 };
 
+struct sensorLocation {
+    double latitude;
+    double longitude;
+};
+
 class Geography {
     public:
         GeoBounds getGioBounds(MissionArea& area);
         GeoKinematics getGioKinematics(TargetType& track);
         double randomDouble(double min, double max);
+        static sensorLocation getSensorLocation(MissionArea& area);
 };
 
 

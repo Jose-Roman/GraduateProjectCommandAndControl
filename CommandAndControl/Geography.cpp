@@ -36,3 +36,16 @@ double Geography::randomDouble(double min, double max) {
     std::uniform_real_distribution<double> distribution(min, max);
     return distribution(rng);
 }
+
+sensorLocation Geography::getSensorLocation(MissionArea& area) {
+    switch (area) {
+        case MissionArea::LosAngeles:
+            return {34.0522, -118.2437};  //Downtown LA
+        case MissionArea::Miami:
+            return {25.7617, -80.1918};   //Downtown Miami
+        case MissionArea::NewYork:
+            return {40.7128, -74.0060};   // Manhattan
+        default:
+            return {0,0};
+    }
+}
