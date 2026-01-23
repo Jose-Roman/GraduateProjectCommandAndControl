@@ -6,7 +6,8 @@
 #include <iostream>
 
 // Command Executor constructor
-CommandExecutor::CommandExecutor(Messaging &messaging) : messaging_(messaging) {}
+CommandExecutor::CommandExecutor(Messaging &messaging, TargetTracker &tracker)
+: messaging_(messaging), tracker_(tracker) {}
 
 // Registers the CommandExecutor as a subscriber and sets up the communication link between
 // the messaging system and the command execution logic
@@ -32,6 +33,10 @@ void CommandExecutor::onCommandReceived(const Message &msg) const {
     statusMsg.source = "CommandExecutor";
 
     messaging_.publish(statusMsg);
+
+    int targetId = std::stoi(msg.payload);
+
+    tracker_.updateTrack(targetId, 10.0);
 }
 
 // Simulates a command execution without messaging

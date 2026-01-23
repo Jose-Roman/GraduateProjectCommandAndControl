@@ -61,7 +61,7 @@ void MissionPlanner::planMission(Target &track) {
     // Create a command message for the CommandExecutor
     Message commandMsg;
     commandMsg.topic = "command.execute";
-    commandMsg.payload = "Engage Target";
+    commandMsg.payload = std::to_string(track.id);
     commandMsg.source = "MissionPlanner";
 
     messaging_.publish(commandMsg);

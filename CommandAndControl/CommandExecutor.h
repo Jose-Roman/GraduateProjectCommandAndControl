@@ -6,16 +6,18 @@
 #define COMMANDEXECUTOR_H
 #include <string>
 #include "Messaging.h"
+#include "TargetTracker.h"
 
 class CommandExecutor {
     public:
-        explicit  CommandExecutor(Messaging& messaging);
+        CommandExecutor(Messaging& messaging, TargetTracker& tracker);
 
         void initialize();
         void executeCommand(const std::string& command);
 
     private:
         Messaging& messaging_;
+        TargetTracker& tracker_;
 
         void onCommandReceived(const Message& msg) const;
 };

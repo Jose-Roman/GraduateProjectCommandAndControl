@@ -7,6 +7,7 @@
 
 #include "Messaging.h"
 #pragma once
+#include <map>
 #include <string>
 #include <Types.h>
 
@@ -37,18 +38,19 @@ class TargetTracker {
 
         // simulates the target tracking logic
         Target trackTarget(MissionArea area, TargetType track);
-        void updateTrack(Target& target, double deltaTimeSec);
+        void updateTrack(int targetId, double deltaTimeSec);
 
         std::string serializeTarget(const Target& target);
         Target deserializeTarget(const std::string& payload);
 
     private:
         Messaging& messaging_;
-
         Geography& geography_;
 
         // Handles incoming sensor data messages
         void onSensorDataReceived(const Message& msg);
+
+        std::map<int, Target> activeTracks_;
 };
 
 #endif //TARGETTRACKER_H

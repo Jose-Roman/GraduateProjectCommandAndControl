@@ -26,10 +26,10 @@ void runCommandAndControl() {
     Geography geo;
 
     // Create system components
-    CommandExecutor commandExecutor(msg);
     SensorData sensorData(msg);
     TargetTracker targetTracker(msg, geo);
     MissionPlanner missionPlanner(msg, targetTracker);
+    CommandExecutor commandExecutor(msg, targetTracker);
 
     // Initialize subscriptions for messaging system
     commandExecutor.initialize();
@@ -51,11 +51,11 @@ void runMission() {
     Geography geo;
 
     // Create system components
-    CommandExecutor commandExecutor(msg);
     SensorData sensorData(msg);
     TargetTracker targetTracker(msg, geo);
     MissionPlanner missionPlanner(msg, targetTracker);
     GenerateScenario genScenStart(sensorData, geo);
+    CommandExecutor commandExecutor(msg, targetTracker);
 
     // Initialize subscriptions for messaging system
     commandExecutor.initialize();

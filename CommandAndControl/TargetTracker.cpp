@@ -56,6 +56,11 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
         targetType = TargetType::Missile;
 
     Target track = trackTarget(missionArea, targetType);
+
+    activeTracks_[track.id] = track;
+
+    std::cout << "[TargetTracker] Active Track Created, ID = " << track.id << std::endl;
+
     Message targetMsg;
     targetMsg.topic = "target.update";
 
@@ -127,23 +132,34 @@ Target TargetTracker::deserializeTarget(const std::string& payload) {
     return track;
 }
 
-void TargetTracker::updateTrack(Target &target, double deltaTimeSec) {
+void TargetTracker::updateTrack(int targetId, double deltaTimeSec) {
+    auto it = activeTracks_.find(targetId);
+
+    if (it == activeTracks_.end()) {
+        std::cout << "[TargetTracker] No active track found for ID " << targetId << std::endl;
+        return;
+    }
+
+    Target& target = it->second;
     // Convert speed (m/s) into distance traveled
     double distance = target.speed * deltaTimeSec;
 
     double headingRadians = geography_.randomDouble(0.0, 2 * M_PI);
 
-    // Simplified lat/long update
-    target.latitude += (distance * std::cos(headingRadians)) * 1e-5 ;
-    target.longitude += (distance * std::sin(headingRadians)) * 1e-5 ;
+    int updates = 5;
+    for (int i = 0; i < updates; i++) {
+        // Simplified lat/long update
+        target.latitude += (distance * std::cos(headingRadians)) * 1e-5 ;
+        target.longitude += (distance * std::sin(headingRadians)) * 1e-5 ;
 
-    target.altitude += geography_.randomDouble(-5.0, 5.0);
+        target.altitude += geography_.randomDouble(-5.0, 5.0);
 
-    target.numOfUpdates++;
+        target.numOfUpdates++;
 
-    std::cout << "[TargetTracker] Target # " << target.id << " Update #: "
-    << target.numOfUpdates << ""
-    << target.latitude << ", "
-    << target.longitude << ")"
-    << std::endl;
+        std::cout << "[TargetTracker] Target # " << target.id << " Update #: "
+        << target.numOfUpdates << ""
+        << target.latitude << ", "
+        << target.longitude << ")"
+        << std::endl;
+    }
 }
