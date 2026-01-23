@@ -23,7 +23,8 @@ struct Target {
     double longitude;
     double altitude;
     double speed;
-    int numOfUpdates;
+
+    int numOfUpdates = 0;
 };
 
 class TargetTracker {
@@ -36,6 +37,7 @@ class TargetTracker {
 
         // simulates the target tracking logic
         Target trackTarget(MissionArea area, TargetType track);
+        void updateTrack(Target& target, double deltaTimeSec);
 
         std::string serializeTarget(const Target& target);
         Target deserializeTarget(const std::string& payload);

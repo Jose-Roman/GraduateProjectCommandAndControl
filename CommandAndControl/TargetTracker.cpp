@@ -126,3 +126,24 @@ Target TargetTracker::deserializeTarget(const std::string& payload) {
     track.type = static_cast<TargetType>(type);
     return track;
 }
+
+void TargetTracker::updateTrack(Target &target, double deltaTimeSec) {
+    // Convert speed (m/s) into distance traveled
+    double distance = target.speed * deltaTimeSec;
+
+    double headingRadians = geography_.randomDouble(0.0, 2 * M_PI);
+
+    // Simplified lat/long update
+    target.latitude += (distance * std::cos(headingRadians)) * 1e-5 ;
+    target.longitude += (distance * std::sin(headingRadians)) * 1e-5 ;
+
+    target.altitude += geography_.randomDouble(-5.0, 5.0);
+
+    target.numOfUpdates++;
+
+    std::cout << "[TargetTracker] Target # " << target.id << " Update #: "
+    << target.numOfUpdates << ""
+    << target.latitude << ", "
+    << target.longitude << ")"
+    << std::endl;
+}
