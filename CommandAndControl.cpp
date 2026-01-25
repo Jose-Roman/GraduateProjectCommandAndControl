@@ -65,9 +65,9 @@ void runMission() {
 
     Mission LosAngeles {MissionArea::LosAngeles, "Los Angeles"};
     LosAngeles.targetCounts = {
-            {TargetType::Plane, 1},
-            {TargetType::Ship, 0},
-            {TargetType::Missile, 0}
+            {TargetType::Plane, 3},
+            {TargetType::Ship, 3},
+            {TargetType::Missile, 3}
     };
 
     //sensorData.startSensor(LosAngeles);

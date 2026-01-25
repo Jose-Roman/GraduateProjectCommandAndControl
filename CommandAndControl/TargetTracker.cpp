@@ -146,7 +146,8 @@ void TargetTracker::updateTrack(int targetId, double deltaTimeSec) {
 
     double headingRadians = geography_.randomDouble(0.0, 2 * M_PI);
 
-    int updates = 5;
+    // Update 10 times per target
+    int updates = 10;
     for (int i = 0; i < updates; i++) {
         // Simplified lat/long update
         target.latitude += (distance * std::cos(headingRadians)) * 1e-5 ;
@@ -156,8 +157,9 @@ void TargetTracker::updateTrack(int targetId, double deltaTimeSec) {
 
         target.numOfUpdates++;
 
-        std::cout << "[TargetTracker] Target # " << target.id << " Update #: "
+        std::cout << "[TargetTracker] Target #" << target.id << " Update #"
         << target.numOfUpdates << ""
+        << " at ("
         << target.latitude << ", "
         << target.longitude << ")"
         << std::endl;

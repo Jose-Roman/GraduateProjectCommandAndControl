@@ -36,6 +36,7 @@ void CommandExecutor::onCommandReceived(const Message &msg) const {
 
     int targetId = std::stoi(msg.payload);
 
+    // update every 10 seconds
     tracker_.updateTrack(targetId, 10.0);
 }
 
