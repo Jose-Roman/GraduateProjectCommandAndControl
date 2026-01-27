@@ -23,6 +23,8 @@ struct Mission {
     std::string name;
 
     std::map<TargetType, int> targetCounts;
+
+    int scenarioDuration;   //seconds
 };
 
 class MissionPlanner {

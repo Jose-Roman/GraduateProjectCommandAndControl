@@ -34,13 +34,17 @@ void CommandExecutor::onCommandReceived(const Message &msg) const {
 
     messaging_.publish(statusMsg);
 
-    int targetId = std::stoi(msg.payload);
+    Target track = tracker_.deserializeTarget(msg.payload);
 
     // update every 10 seconds
-    tracker_.updateTrack(targetId, 10.0);
+    tracker_.updateTrack(track.id, missionDuration_);
 }
 
 // Simulates a command execution without messaging
 void CommandExecutor::executeCommand(const std::string &command) {
     std::cout << "[CommandExecutor] Executing Command: " << command << std::endl;
+}
+
+void CommandExecutor::setScenarioDuration(int scenarioDuration) {
+    missionDuration_ = scenarioDuration;
 }

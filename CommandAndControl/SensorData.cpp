@@ -61,13 +61,21 @@ void SensorData::startSensorTwo(const Mission& mission) {
 
 void SensorData::startSensor(const Mission& mission) {
     std::cout << "[SensorData] Starting Sensor for mission" << std::endl;
+    std::string areaStr;
+    switch (mission.area) {
+        case MissionArea::LosAngeles:
+            areaStr = "LosAngeles"; break;
+        case MissionArea::Miami:
+            areaStr = "Miami"; break;
+        case MissionArea::NewYork:
+            areaStr = "NewYork"; break;
+    }
 
     for (const auto& [type, count] : mission.targetCounts) {
         for (int i = 0; i < count; i++) {
             Message msg;
             msg.topic = "sensor.target.detected";
-            msg.payload = std::to_string(static_cast<int>(type));
-            msg.source = "SensorData";
+            msg.payload = areaStr + ":" + std::to_string(static_cast<int>(type));
             messaging_.publish(msg);
         }
 

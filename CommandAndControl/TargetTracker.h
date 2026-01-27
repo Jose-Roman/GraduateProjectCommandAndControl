@@ -38,7 +38,9 @@ class TargetTracker {
 
         // simulates the target tracking logic
         Target trackTarget(MissionArea area, TargetType track);
-        void updateTrack(int targetId, double deltaTimeSec);
+        void updateTrack(int targetId, int duration);
+
+        int getUpdateInterval(TargetType type);
 
         std::string serializeTarget(const Target& target);
         Target deserializeTarget(const std::string& payload);

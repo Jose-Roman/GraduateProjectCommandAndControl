@@ -48,12 +48,14 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
     else
         missionArea = MissionArea::Miami;
 
-    if (typeStr == "Plane")
-        targetType = TargetType::Plane;
-    else if (typeStr == "Ship")
-        targetType = TargetType::Ship;
-    else
-        targetType = TargetType::Missile;
+    int typeInt = std::stoi(typeStr);
+
+    switch (typeInt) {
+        case 0: targetType = TargetType::Plane; break;
+        case 1: targetType = TargetType::Ship; break;
+        case 2: targetType = TargetType::Missile; break;
+        default: targetType = TargetType::Plane; break;
+    }
 
     Target track = trackTarget(missionArea, targetType);
 
@@ -132,7 +134,8 @@ Target TargetTracker::deserializeTarget(const std::string& payload) {
     return track;
 }
 
-void TargetTracker::updateTrack(int targetId, double deltaTimeSec) {
+void TargetTracker::updateTrack(int targetId, int duration) {
+
     auto it = activeTracks_.find(targetId);
 
     if (it == activeTracks_.end()) {
@@ -141,14 +144,17 @@ void TargetTracker::updateTrack(int targetId, double deltaTimeSec) {
     }
 
     Target& target = it->second;
+
+    double deltaTimeSec = getUpdateInterval(target.type);
+
     // Convert speed (m/s) into distance traveled
     double distance = target.speed * deltaTimeSec;
 
     double headingRadians = geography_.randomDouble(0.0, 2 * M_PI);
 
-    // Update 10 times per target
-    int updates = 10;
-    for (int i = 0; i < updates; i++) {
+    int maxUpdates = duration / deltaTimeSec;
+
+    for (int i = 0; i < maxUpdates; i++) {
         // Simplified lat/long update
         target.latitude += (distance * std::cos(headingRadians)) * 1e-5 ;
         target.longitude += (distance * std::sin(headingRadians)) * 1e-5 ;
@@ -163,5 +169,18 @@ void TargetTracker::updateTrack(int targetId, double deltaTimeSec) {
         << target.latitude << ", "
         << target.longitude << ")"
         << std::endl;
+    }
+}
+
+int TargetTracker::getUpdateInterval(TargetType type) {
+    switch (type) {
+        case TargetType::Plane:
+            return 10;
+        case TargetType::Ship:
+            return 20;
+        case TargetType::Missile:
+            return 5;
+        default:
+            return 10;
     }
 }

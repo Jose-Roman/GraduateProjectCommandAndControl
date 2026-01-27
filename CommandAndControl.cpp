@@ -54,8 +54,8 @@ void runMission() {
     SensorData sensorData(msg);
     TargetTracker targetTracker(msg, geo);
     MissionPlanner missionPlanner(msg, targetTracker);
-    GenerateScenario genScenStart(sensorData, geo);
     CommandExecutor commandExecutor(msg, targetTracker);
+    GenerateScenario genScenStart(sensorData, geo, commandExecutor);
 
     // Initialize subscriptions for messaging system
     commandExecutor.initialize();
@@ -65,18 +65,14 @@ void runMission() {
 
     Mission LosAngeles {MissionArea::LosAngeles, "Los Angeles"};
     LosAngeles.targetCounts = {
-            {TargetType::Plane, 3},
-            {TargetType::Ship, 3},
-            {TargetType::Missile, 3}
+            {TargetType::Plane, 1},
+            {TargetType::Ship, 1},
+            {TargetType::Missile, 1}
     };
 
-    //sensorData.startSensor(LosAngeles);
+    LosAngeles.scenarioDuration = 120;
 
-    //missionPlanner.setMission(LosAngeles);
-
-    genScenStart.setMissionName(LosAngeles.name);
-    genScenStart.setMissionArea(LosAngeles.area);
-    genScenStart.setTargets(LosAngeles.targetCounts);
+    genScenStart.setFullMission(LosAngeles);
     genScenStart.startScenario();
 
     std::cout << "******** ---- [CommandAndControl] Mission Completed ---- ********" << std::endl;

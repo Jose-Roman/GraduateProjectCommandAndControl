@@ -14,10 +14,12 @@ class CommandExecutor {
 
         void initialize();
         void executeCommand(const std::string& command);
+        void setScenarioDuration(int scenarioDuration);
 
     private:
         Messaging& messaging_;
         TargetTracker& tracker_;
+        int missionDuration_;
 
         void onCommandReceived(const Message& msg) const;
 };

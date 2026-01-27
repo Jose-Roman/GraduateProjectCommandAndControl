@@ -9,19 +9,14 @@
 #include "Geography.h"
 
 
-GenerateScenario::GenerateScenario(SensorData& sensor, Geography& geography_) : sensor_(sensor),
-    geography_(geography_) {}
-
-void GenerateScenario::setMissionArea(MissionArea area) {
-    mission_.area = area;
+GenerateScenario::GenerateScenario(SensorData& sensor, Geography& geography, CommandExecutor& commandExecutor) : sensor_(sensor),
+    geography_(geography), commandExecutor_(commandExecutor) {
 }
 
-void GenerateScenario::setTargets(const std::map<TargetType, int>& targets) {
-    mission_.targetCounts = targets;
-}
 
-void GenerateScenario::setMissionName(std::string name) {
-    mission_.name = name;
+void GenerateScenario::setFullMission(Mission newMission) {
+    mission_ = newMission;
+    commandExecutor_.setScenarioDuration(mission_.scenarioDuration);
 }
 
 void GenerateScenario::startScenario() {
@@ -33,6 +28,8 @@ void GenerateScenario::startScenario() {
                 << sensorLoc.latitude << ", "
                 << sensorLoc.longitude << ")"
                 << std::endl;
+
+    std::cout << "[GenerateScenario] Scenario Duration: " << mission_.scenarioDuration << std::endl;
 
     sensor_.startSensor(mission_);
 }
