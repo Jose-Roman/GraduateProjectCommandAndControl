@@ -6,7 +6,6 @@
 
 #include "TargetTracker.h"
 #include "Geography.h"
-#include "MissionPlanner.h"
 #include "Messaging.h"
 
 class TargetTrackerTest : public ::testing::Test {
