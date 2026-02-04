@@ -36,6 +36,9 @@ class MissionPlanner {
         void initialize();
 
         void setMission(const Mission& mission);
+
+        // Creates and publishes a command based on target data
+        void planMission(Target& track);
     private:
         Messaging& messaging_;
         TargetTracker& tracker_;
@@ -43,9 +46,6 @@ class MissionPlanner {
 
         // Callback invoked when a target tracking message is received
         void onTargetReceived(const Message& msg);
-
-        // Creates and publishes a command based on target data
-        void planMission(Target& track);
 
         void planMissionArea(Target &target);
 };

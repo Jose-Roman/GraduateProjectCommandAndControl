@@ -56,7 +56,8 @@ add_executable(UnitTests
         CommandAndControl/test/GenerateScenarioTest.cpp
         CommandAndControl/test/GeographyTest.cpp
         CommandAndControl/test/MessagingTest.cpp
-        CommandAndControl/test/SensorDataTest.cpp)
+        CommandAndControl/test/SensorDataTest.cpp
+        CommandAndControl/test/MissionPlannerTest.cpp)
 
 
 target_include_directories(GraduateProject PRIVATE
