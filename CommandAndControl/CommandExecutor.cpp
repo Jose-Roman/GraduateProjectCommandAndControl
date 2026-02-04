@@ -36,7 +36,7 @@ void CommandExecutor::onCommandReceived(const Message &msg) const {
 
     Target track = tracker_.deserializeTarget(msg.payload);
 
-    // update every 10 seconds
+    // update track
     tracker_.updateTrack(track.id, missionDuration_);
 }
 

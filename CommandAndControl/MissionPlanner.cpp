@@ -61,7 +61,6 @@ void MissionPlanner::planMission(Target &track) {
     // Create a command message for the CommandExecutor
     Message commandMsg;
     commandMsg.topic = "command.execute";
-    //commandMsg.payload = std::to_string(track.id);
     commandMsg.payload = tracker_.serializeTarget(track);
     commandMsg.source = "MissionPlanner";
 

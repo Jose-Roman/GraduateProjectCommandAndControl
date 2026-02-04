@@ -9,7 +9,7 @@
 #pragma once
 #include <map>
 #include <string>
-#include <Types.h>
+#include "Types.h"
 
 class Geography;
 
@@ -44,6 +44,14 @@ class TargetTracker {
 
         std::string serializeTarget(const Target& target);
         Target deserializeTarget(const std::string& payload);
+
+        void addActiveTrack(const Target& t) {
+            activeTracks_[t.id] = t;
+        }
+
+        Target getActiveTrack(int id) {
+            return activeTracks_.at(id);
+        }
 
     private:
         Messaging& messaging_;
