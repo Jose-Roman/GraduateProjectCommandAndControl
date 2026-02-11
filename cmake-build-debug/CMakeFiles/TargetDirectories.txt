@@ -1,3 +1,5 @@
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/CommandAndControlLib.dir
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/commandcore.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/GraduateProject.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/UnitTests.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/test.dir

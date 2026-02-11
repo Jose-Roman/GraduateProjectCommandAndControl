@@ -1,11 +1,14 @@
+-- Add build directory to Lua native module search path
+package.cpath = package.cpath .. ";../cmake-build-debug/?.dylib"
+
 local command = require("commandcore")
 
 command.start_mission{
 	area = "Miami",
-	duration = 60,
+	duration = 120,
 	targets = {
-		Plane = 4,
+		Plane = 1,
 		Ship = 1,
-		Missile = 2
+		Missile = 1
 	}
 }

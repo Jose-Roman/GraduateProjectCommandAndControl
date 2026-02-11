@@ -9,6 +9,47 @@ include_directories(/opt/homebrew/opt/lua/include/lua5.4)
 # Tell CMake where to find Lua library
 link_directories(/opt/homebrew/opt/lua/lib)
 
+#### LUA
+
+# ---- Core Command & Control Library ----
+add_library(CommandAndControlLib STATIC
+        CommandAndControl/Messaging.cpp
+        CommandAndControl/SensorData.cpp
+        CommandAndControl/TargetTracker.cpp
+        CommandAndControl/MissionPlanner.cpp
+        CommandAndControl/CommandExecutor.cpp
+        CommandAndControl/GenerateScenario.cpp
+        CommandAndControl/Geography.cpp
+)
+
+target_include_directories(CommandAndControlLib PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/CommandAndControl
+)
+
+# ---- Lua Command Core (Lua module) ----
+add_library(commandcore SHARED
+        CommandCore.cpp
+        lua_driver.cpp
+)
+
+target_include_directories(commandcore PRIVATE
+        ${LUA_INCLUDE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_link_libraries(commandcore
+        lua
+        CommandAndControlLib
+)
+
+set_target_properties(commandcore PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "commandcore"
+)
+
+#### LUA
+
 ##### ADD GOOGLE TESTS
 find_package(GTest REQUIRED)
 #####
@@ -72,6 +113,10 @@ target_link_libraries(UnitTests
 
 # Link Lua library AFTER add_executable
 target_link_libraries(GraduateProject lua)
+
+target_link_libraries(GraduateProject
+        CommandAndControlLib
+)
 
 enable_testing()
 add_test(NAME UnitTests COMMAND UnitTests)
