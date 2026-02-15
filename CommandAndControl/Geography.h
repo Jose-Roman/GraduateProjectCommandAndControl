@@ -36,6 +36,7 @@ class Geography {
         GeoKinematics getGioKinematics(TargetType& track);
         double randomDouble(double min, double max);
         static sensorLocation getSensorLocation(MissionArea& area);
+        MissionArea parseMissionArea(const std::string& areaStr);
 };
 
 

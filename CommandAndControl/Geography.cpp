@@ -49,3 +49,11 @@ sensorLocation Geography::getSensorLocation(MissionArea& area) {
             return {0,0};
     }
 }
+
+MissionArea Geography::parseMissionArea(const std::string& areaStr) {
+    if (areaStr == "LosAngeles") return MissionArea::LosAngeles;
+    if (areaStr == "NewYork")    return MissionArea::NewYork;
+    if (areaStr == "Miami")      return MissionArea::Miami;
+
+    throw std::runtime_error("Invalid MissionArea: " + areaStr);
+}

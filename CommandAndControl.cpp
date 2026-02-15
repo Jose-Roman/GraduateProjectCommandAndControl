@@ -63,7 +63,7 @@ void runMission() {
     targetTracker.initialize();
     missionPlanner.initialize();
 
-    Mission LosAngeles {MissionArea::LosAngeles, "Los Angeles"};
+    Mission LosAngeles {MissionArea::NewYork, "New York"};
     LosAngeles.targetCounts = {
             {TargetType::Plane, 1},
             {TargetType::Ship, 1},

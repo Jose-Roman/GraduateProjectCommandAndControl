@@ -1,1 +1,0 @@
-/usr/bin/c++  -arch arm64 -dynamiclib -Wl,-headerpad_max_install_names -o commandcore.dylib -install_name @rpath/commandcore.dylib CMakeFiles/commandcore.dir/CommandCore.cpp.o CMakeFiles/commandcore.dir/lua_driver.cpp.o   -L/opt/homebrew/opt/lua/lib  -Wl,-rpath,/opt/homebrew/opt/lua/lib -llua libCommandAndControlLib.a

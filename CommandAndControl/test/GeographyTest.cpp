@@ -55,5 +55,23 @@ TEST_F(GeographyTest, GetSensorLocationMiami) {
     EXPECT_DOUBLE_EQ(loc.longitude, -80.1918);
 }
 
+TEST_F(GeographyTest, ParseMissionAreaLosAngeles)
+{
+    MissionArea area = geo.parseMissionArea("LosAngeles");
 
+    EXPECT_EQ(area, MissionArea::LosAngeles);
+}
 
+TEST_F(GeographyTest, ParseMissionAreaNewYork)
+{
+    MissionArea area = geo.parseMissionArea("NewYork");
+
+    EXPECT_EQ(area, MissionArea::NewYork);
+}
+
+TEST_F(GeographyTest, ParseMissionAreaMiami)
+{
+    MissionArea area = geo.parseMissionArea("Miami");
+
+    EXPECT_EQ(area, MissionArea::Miami);
+}

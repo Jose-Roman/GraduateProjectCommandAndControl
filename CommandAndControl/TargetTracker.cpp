@@ -41,12 +41,8 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
 
     MissionArea missionArea;
     TargetType targetType;
-    if (areaStr == "LosAngeles")
-        missionArea = MissionArea::LosAngeles;
-    else if (typeStr == "NewYork")
-        missionArea = MissionArea::NewYork;
-    else
-        missionArea = MissionArea::Miami;
+
+    missionArea = geography_.parseMissionArea(areaStr);
 
     int typeInt = std::stoi(typeStr);
 
