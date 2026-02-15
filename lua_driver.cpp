@@ -55,6 +55,11 @@ static int lua_start_mission(lua_State* L) {
         return luaL_error(L, "start_mission expects a table");
     }
 
+    // Read mission.name
+    lua_getfield(L, 1, "name");
+    std::string nameStr = lua_tostring(L, -1);
+    lua_pop(L, 1);
+
     // Read mission.area
     lua_getfield(L, 1, "area");
     std::string areaStr = lua_tostring(L, -1);
@@ -84,6 +89,7 @@ static int lua_start_mission(lua_State* L) {
 
     // Build Mission
     Mission mission;
+    mission.name = nameStr;
     mission.area = parseMissionArea(areaStr);
     mission.scenarioDuration = duration;
 

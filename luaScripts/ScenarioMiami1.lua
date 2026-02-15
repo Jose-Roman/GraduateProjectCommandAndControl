@@ -4,6 +4,7 @@ package.cpath = package.cpath .. ";../cmake-build-debug/?.dylib"
 local command = require("commandcore")
 
 command.start_mission{
+	name = "Scenario Miami 1",
 	area = "Miami",
 	duration = 120,
 	targets = {
