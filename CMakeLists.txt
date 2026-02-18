@@ -20,6 +20,8 @@ add_library(CommandAndControlLib STATIC
         CommandAndControl/CommandExecutor.cpp
         CommandAndControl/GenerateScenario.cpp
         CommandAndControl/Geography.cpp
+        CommandAndControl/luaHelpers/sensor_lua.cpp
+        CommandAndControl/luaHelpers/sensor_lua.h
 )
 
 target_include_directories(CommandAndControlLib PUBLIC
