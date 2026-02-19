@@ -12,6 +12,8 @@ CommandExecutor::CommandExecutor(Messaging &messaging, TargetTracker &tracker)
 // Registers the CommandExecutor as a subscriber and sets up the communication link between
 // the messaging system and the command execution logic
 void CommandExecutor::initialize() {
+    std::cout << "[CommandExecutor] Command Executor initialized" << std::endl;
+
     messaging_.subscribe("command.execute",
         [this](const Message& msg) {
             onCommandReceived((msg));

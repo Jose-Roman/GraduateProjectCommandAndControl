@@ -22,6 +22,8 @@ add_library(CommandAndControlLib STATIC
         CommandAndControl/Geography.cpp
         CommandAndControl/luaHelpers/sensor_lua.cpp
         CommandAndControl/luaHelpers/sensor_lua.h
+        CommandAndControl/luaHelpers/command_executor_lua.cpp
+        CommandAndControl/luaHelpers/command_executor_lua.h
 )
 
 target_include_directories(CommandAndControlLib PUBLIC
@@ -64,6 +66,26 @@ set_target_properties(sensor PROPERTIES
         OUTPUT_NAME "sensor"
 )
 # End Sensor Module
+
+## Command Executor Module
+
+add_library(command_executor SHARED
+        CommandAndControl/luaHelpers/command_executor_lua.cpp
+        CommandAndControl/TargetTracker.cpp
+        CommandAndControl/Messaging.cpp
+        CommandAndControl/Geography.cpp
+        CommandAndControl/CommandExecutor.cpp)
+
+target_link_libraries(command_executor
+        lua
+        CommandAndControlLib)
+
+set_target_properties(command_executor PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "command_executor"
+)
+
+## End Command Executor Module
 
 #### LUA
 
