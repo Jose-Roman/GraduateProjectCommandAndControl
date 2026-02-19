@@ -3,12 +3,15 @@
 //
 
 #include "SensorData.h"
-#include <lua.h>
+#include <lua.hpp>
 #include "MissionPlanner.h"
 #include <iostream>
 #include <lauxlib.h>
 
+#include "Messaging.h"
 
+static Messaging g_msg;
+static SensorData g_sensor_instance(g_msg);
 
 // SensorData functions
 // SensorData(Messaging& messaging);
@@ -75,13 +78,24 @@ static int lua_sensor_start(lua_State* L) {
 }
 
 
-// sensor.start_for_mission()
-static int lua_sensor_start_for_mission(lua_State* L) {
+// sensor.start__mission()
+static int lua_sensor_start_mission(lua_State* L) {
     if (!g_sensor) {
         return luaL_error (L, "SensorData not initialized");
     }
 
     const char* missionName = luaL_checkstring(L,1);
+
+    Mission mission;
+    mission.name = missionName;
+    mission.area = MissionArea::LosAngeles; //test default
+
+    mission.targetCounts = {
+        {TargetType::Plane, 10},
+        {TargetType::Ship, 1},
+        {TargetType::Missile, 1}
+    };
+
     std::cout << "[Lua Sensor] Triggered for mission: "<<
         missionName << std::endl;
 
@@ -96,12 +110,16 @@ static const luaL_Reg SensorFunctions[] = {
     {"publish", lua_sensor_publish},
     {"read", lua_sensor_read},
     {"start", lua_sensor_start},
-    {"start_for_mission", lua_sensor_start_for_mission},
+    {"start_mission", lua_sensor_start_mission},
     {nullptr, nullptr}
 };
 
 // Entry point
-extern "C" int luaopen_sensor(lua_State* L) {
+extern "C" int luaopen_sensor(lua_State* L)
+{
+    // assign global pointer
+    registerSensor(&g_sensor_instance);
+
     luaL_newlib(L, SensorFunctions);
     return 1;
 }

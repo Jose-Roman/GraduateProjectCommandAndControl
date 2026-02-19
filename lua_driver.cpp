@@ -14,6 +14,9 @@
 #include "CommandAndControl/CommandExecutor.h"
 #include "CommandAndControl/Geography.h"
 
+extern void registerSensor(SensorData* sensor);
+
+
 int lua_send(lua_State* L) {
     // Get the first Lua argument as string
     const char* cmd = luaL_checkstring(L, 1);

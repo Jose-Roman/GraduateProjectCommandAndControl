@@ -50,6 +50,21 @@ set_target_properties(commandcore PROPERTIES
         OUTPUT_NAME "commandcore"
 )
 
+# Sensor Module
+add_library(sensor SHARED
+            CommandAndControl/luaHelpers/sensor_lua.cpp
+            CommandAndControl/SensorData.cpp
+            CommandAndControl/Messaging.cpp)
+target_link_libraries(sensor
+        lua
+        CommandAndControlLib)
+
+set_target_properties(sensor PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "sensor"
+)
+# End Sensor Module
+
 #### LUA
 
 ##### ADD GOOGLE TESTS
