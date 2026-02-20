@@ -2,6 +2,7 @@
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/commandcore.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/sensor.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/command_executor.dir
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/mission_planner.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/GraduateProject.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/UnitTests.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/test.dir

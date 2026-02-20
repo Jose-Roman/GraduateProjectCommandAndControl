@@ -24,6 +24,8 @@ add_library(CommandAndControlLib STATIC
         CommandAndControl/luaHelpers/sensor_lua.h
         CommandAndControl/luaHelpers/command_executor_lua.cpp
         CommandAndControl/luaHelpers/command_executor_lua.h
+        CommandAndControl/luaHelpers/mission_planner_lua.cpp
+        CommandAndControl/luaHelpers/mission_planner_lua.h
 )
 
 target_include_directories(CommandAndControlLib PUBLIC
@@ -87,6 +89,26 @@ set_target_properties(command_executor PROPERTIES
 
 ## End Command Executor Module
 
+## Mission Planner Module
+
+add_library(mission_planner SHARED
+        CommandAndControl/luaHelpers/mission_planner_lua.cpp
+        CommandAndControl/TargetTracker.cpp
+        CommandAndControl/Messaging.cpp
+        CommandAndControl/Geography.cpp
+        CommandAndControl/MissionPlanner.cpp)
+
+target_link_libraries(mission_planner
+        lua
+        CommandAndControlLib)
+
+set_target_properties(mission_planner PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "mission_planner"
+)
+
+## End Mission Planner Module
+
 #### LUA
 
 ##### ADD GOOGLE TESTS
@@ -113,7 +135,9 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/Geography.h
         CommandAndControl/Types.h
         CommandAndControl/GenerateScenario.cpp
-        CommandAndControl/GenerateScenario.h)
+        CommandAndControl/GenerateScenario.h
+        CommandAndControl/luaHelpers/mission_planner_lua.cpp
+        CommandAndControl/luaHelpers/mission_planner_lua.h)
 
 add_executable(UnitTests
         CommandAndControl/test/TargetTrackerTest.cpp
