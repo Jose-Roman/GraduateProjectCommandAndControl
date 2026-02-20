@@ -26,6 +26,8 @@ add_library(CommandAndControlLib STATIC
         CommandAndControl/luaHelpers/command_executor_lua.h
         CommandAndControl/luaHelpers/mission_planner_lua.cpp
         CommandAndControl/luaHelpers/mission_planner_lua.h
+        CommandAndControl/luaHelpers/target_tracker_lua.cpp
+        CommandAndControl/luaHelpers/target_tracker_lua.h
 )
 
 target_include_directories(CommandAndControlLib PUBLIC
@@ -109,6 +111,25 @@ set_target_properties(mission_planner PROPERTIES
 
 ## End Mission Planner Module
 
+## Target Tracker Module
+
+add_library(target_tracker SHARED
+        CommandAndControl/luaHelpers/target_tracker_lua.cpp
+        CommandAndControl/TargetTracker.cpp
+        CommandAndControl/Messaging.cpp
+        CommandAndControl/Geography.cpp)
+
+target_link_libraries(target_tracker
+        lua
+        CommandAndControlLib)
+
+set_target_properties(target_tracker PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "target_tracker"
+)
+
+## End Target Tracker Module
+
 #### LUA
 
 ##### ADD GOOGLE TESTS
@@ -137,7 +158,9 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/GenerateScenario.cpp
         CommandAndControl/GenerateScenario.h
         CommandAndControl/luaHelpers/mission_planner_lua.cpp
-        CommandAndControl/luaHelpers/mission_planner_lua.h)
+        CommandAndControl/luaHelpers/mission_planner_lua.h
+        CommandAndControl/luaHelpers/target_tracker_lua.cpp
+        CommandAndControl/luaHelpers/target_tracker_lua.h)
 
 add_executable(UnitTests
         CommandAndControl/test/TargetTrackerTest.cpp
