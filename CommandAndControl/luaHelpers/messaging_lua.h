@@ -8,6 +8,6 @@
 #include <lua.hpp>
 #include "Messaging.h"
 
-
+extern "C" int luaopen_messaging(lua_State *L);
 
 #endif // __MESSAGING_LUA__

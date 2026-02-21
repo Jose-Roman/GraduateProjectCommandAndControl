@@ -17,9 +17,9 @@
 // executeCommand(const std::string& command);
 // setScenarioDuration(int scenarioDuration);
 
-Messaging msg;
-Geography geo;
-TargetTracker targetTracker(msg, geo);
+static Messaging msg;
+static Geography geo;
+static TargetTracker targetTracker(msg, geo);
 CommandExecutor g_command_executor_instance(msg, targetTracker);
 
 // global pointer

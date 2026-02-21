@@ -28,6 +28,10 @@ add_library(CommandAndControlLib STATIC
         CommandAndControl/luaHelpers/mission_planner_lua.h
         CommandAndControl/luaHelpers/target_tracker_lua.cpp
         CommandAndControl/luaHelpers/target_tracker_lua.h
+        CommandAndControl/luaHelpers/messaging_lua.cpp
+        CommandAndControl/luaHelpers/messaging_lua.h
+        CommandAndControl/luaHelpers/geography_lua.cpp
+        CommandAndControl/luaHelpers/geography_lua.h
 )
 
 target_include_directories(CommandAndControlLib PUBLIC
@@ -148,6 +152,23 @@ set_target_properties(messaging PROPERTIES
 
 ## End Messaging Module
 
+## Geography Module
+
+add_library(geography SHARED
+        CommandAndControl/luaHelpers/geography_lua.cpp
+        CommandAndControl/Geography.cpp)
+
+target_link_libraries(geography
+        lua
+        CommandAndControlLib)
+
+set_target_properties(geography PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "geography"
+)
+
+## End Geography Module
+
 #### LUA
 
 ##### ADD GOOGLE TESTS
@@ -175,12 +196,18 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/Types.h
         CommandAndControl/GenerateScenario.cpp
         CommandAndControl/GenerateScenario.h
+        CommandAndControl/luaHelpers/sensor_lua.cpp
+        CommandAndControl/luaHelpers/sensor_lua.h
+        CommandAndControl/luaHelpers/command_executor_lua.cpp
+        CommandAndControl/luaHelpers/command_executor_lua.h
         CommandAndControl/luaHelpers/mission_planner_lua.cpp
         CommandAndControl/luaHelpers/mission_planner_lua.h
         CommandAndControl/luaHelpers/target_tracker_lua.cpp
         CommandAndControl/luaHelpers/target_tracker_lua.h
         CommandAndControl/luaHelpers/messaging_lua.cpp
-        CommandAndControl/luaHelpers/messaging_lua.h)
+        CommandAndControl/luaHelpers/messaging_lua.h
+        CommandAndControl/luaHelpers/geography_lua.cpp
+        CommandAndControl/luaHelpers/geography_lua.h)
 
 add_executable(UnitTests
         CommandAndControl/test/TargetTrackerTest.cpp
