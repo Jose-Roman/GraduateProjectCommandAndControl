@@ -5,4 +5,4 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 add_test([=[UnitTests]=] "/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/UnitTests")
-set_tests_properties([=[UnitTests]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/joseroman/CLionProjects/GraduateProject/CMakeLists.txt;208;add_test;/Users/joseroman/CLionProjects/GraduateProject/CMakeLists.txt;0;")
+set_tests_properties([=[UnitTests]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/joseroman/CLionProjects/GraduateProject/CMakeLists.txt;228;add_test;/Users/joseroman/CLionProjects/GraduateProject/CMakeLists.txt;0;")

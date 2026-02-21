@@ -78,7 +78,8 @@ add_library(command_executor SHARED
         CommandAndControl/TargetTracker.cpp
         CommandAndControl/Messaging.cpp
         CommandAndControl/Geography.cpp
-        CommandAndControl/CommandExecutor.cpp)
+        CommandAndControl/CommandExecutor.cpp
+)
 
 target_link_libraries(command_executor
         lua
@@ -130,6 +131,23 @@ set_target_properties(target_tracker PROPERTIES
 
 ## End Target Tracker Module
 
+## Messaging Module
+
+add_library(messaging SHARED
+        CommandAndControl/luaHelpers/messaging_lua.cpp
+        CommandAndControl/Messaging.cpp)
+
+target_link_libraries(messaging
+        lua
+        CommandAndControlLib)
+
+set_target_properties(messaging PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "messaging"
+)
+
+## End Messaging Module
+
 #### LUA
 
 ##### ADD GOOGLE TESTS
@@ -160,7 +178,9 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/luaHelpers/mission_planner_lua.cpp
         CommandAndControl/luaHelpers/mission_planner_lua.h
         CommandAndControl/luaHelpers/target_tracker_lua.cpp
-        CommandAndControl/luaHelpers/target_tracker_lua.h)
+        CommandAndControl/luaHelpers/target_tracker_lua.h
+        CommandAndControl/luaHelpers/messaging_lua.cpp
+        CommandAndControl/luaHelpers/messaging_lua.h)
 
 add_executable(UnitTests
         CommandAndControl/test/TargetTrackerTest.cpp
