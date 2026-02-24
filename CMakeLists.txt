@@ -32,8 +32,8 @@ add_library(CommandAndControlLib STATIC
         CommandAndControl/luaHelpers/messaging_lua.h
         CommandAndControl/luaHelpers/geography_lua.cpp
         CommandAndControl/luaHelpers/geography_lua.h
-        CommandAndControl/luaHelpers/generate_scenario.cpp
-        CommandAndControl/luaHelpers/generate_scenario.h
+        CommandAndControl/luaHelpers/generate_scenario_lua.cpp
+        CommandAndControl/luaHelpers/generate_scenario_lua.h
 )
 
 target_include_directories(CommandAndControlLib PUBLIC
@@ -181,7 +181,8 @@ add_library(generate_scenario SHARED
         CommandAndControl/Messaging.cpp
         CommandAndControl/Geography.cpp
         CommandAndControl/CommandExecutor.cpp
-        CommandAndControl/TargetTracker.cpp)
+        CommandAndControl/TargetTracker.cpp
+        CommandAndControl/luaHelpers/generate_scenario_lua.h)
 
 target_link_libraries(generate_scenario
         lua
@@ -233,8 +234,8 @@ add_executable(GraduateProject main.cpp
         CommandAndControl/luaHelpers/messaging_lua.h
         CommandAndControl/luaHelpers/geography_lua.cpp
         CommandAndControl/luaHelpers/geography_lua.h
-        CommandAndControl/luaHelpers/generate_scenario.cpp
-        CommandAndControl/luaHelpers/generate_scenario.h)
+        CommandAndControl/luaHelpers/generate_scenario_lua.cpp
+        CommandAndControl/luaHelpers/generate_scenario_lua.h)
 
 add_executable(UnitTests
         CommandAndControl/test/TargetTrackerTest.cpp
