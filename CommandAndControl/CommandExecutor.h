@@ -20,8 +20,8 @@ class CommandExecutor {
         Messaging& messaging_;
         TargetTracker& tracker_;
         int missionDuration_;
-
         void onCommandReceived(const Message& msg) const;
+
 };
 
 #endif //COMMANDEXECUTOR_H

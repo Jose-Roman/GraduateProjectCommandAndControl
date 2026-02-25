@@ -29,6 +29,7 @@ static TargetTracker g_tracker(g_messaging, g_geography);
 static CommandExecutor g_command_executor(g_messaging, g_tracker);
 static SensorData g_sensor(g_messaging);
 static GenerateScenario g_scenario(g_sensor, g_geography, g_command_executor);
+static MissionPlanner g_missionPlanner(g_messaging, g_tracker);
 
 static Mission g_mission;
 
@@ -94,6 +95,7 @@ static int lua_scenario_start(lua_State* L) {
     std::cout << "[Generate Scenario Lua] Starting Scenario ... " << std::endl;
     g_sensor.initialize();
     g_tracker.initialize();
+    g_missionPlanner.initialize();
     g_command_executor.initialize();
     g_scenario.startScenario();
 

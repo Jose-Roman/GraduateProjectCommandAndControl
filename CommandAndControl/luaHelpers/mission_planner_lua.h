@@ -7,6 +7,7 @@
 
 #pragma once
 #include "MissionPlanner.h"
+#include <lua.hpp>
 
 extern "C" int luaopen_mission_planner(lua_State *L);
 
