@@ -9,6 +9,7 @@
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/generate_scenario.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/GraduateProject.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/UnitTests.dir
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/command_system.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/test.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir

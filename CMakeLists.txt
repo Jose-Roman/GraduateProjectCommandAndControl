@@ -281,3 +281,14 @@ target_link_libraries(GraduateProject
 
 enable_testing()
 add_test(NAME UnitTests COMMAND UnitTests)
+
+
+#### PYTHON
+
+find_package(pybind11 REQUIRED)
+
+pybind11_add_module(command_system
+        CommandAndControl/pythonHelpers/python_c_hello_world.cpp
+)
+
+#### PYTHON
