@@ -347,4 +347,23 @@ target_link_libraries(generate_scenario_py
 
 ### GENERATE SCENARIO PY
 
+
+### GEOGRAPHY PY
+pybind11_add_module(geography_py
+        CommandAndControl/pythonHelpers/python_geography.cpp
+)
+
+target_include_directories(geography_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(geography_py
+        PRIVATE command_control_py
+)
+
+### GEOGRAPHY PY
+
+
+
 #### PYTHON

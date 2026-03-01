@@ -13,6 +13,7 @@
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/command_control_py.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/command_executor_py.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/generate_scenario_py.dir
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/geography_py.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/test.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
