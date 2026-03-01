@@ -398,6 +398,23 @@ target_link_libraries(mission_planner_py
 
 ### MISSION_PLANNING PY
 
+### SENSOR_DATA PY
+pybind11_add_module(sensor_data_py
+        CommandAndControl/pythonHelpers/python_sensor_data.cpp
+)
+
+target_include_directories(sensor_data_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(sensor_data_py
+        PRIVATE command_control_py
+)
+
+### SENSOR_DATA PY
+
+
 
 
 #### PYTHON

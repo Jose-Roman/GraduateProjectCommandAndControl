@@ -3,6 +3,8 @@ sys.path.append("../cmake-build-debug")
 
 import messaging_py as msg
 
+print("messaging_py module loaded")
+
 messaging = msg.Messaging()
 
 def on_sensor(message):

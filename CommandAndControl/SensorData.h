@@ -24,7 +24,6 @@ class SensorData {
         void initialize();
 
         // Simulates reading data from a sensor
-        // TODO: generate data that represents sensor activites
         SensorReading readSensor() const;
 
         // Publishes a sensor update message

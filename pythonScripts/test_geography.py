@@ -3,6 +3,8 @@ sys.path.append("../cmake-build-debug")
 
 import geography_py as geo
 
+print("geography_py module loaded")
+
 g = geo.Geography()
 
 bounds = g.getGeoBounds(geo.MissionArea.LosAngeles)

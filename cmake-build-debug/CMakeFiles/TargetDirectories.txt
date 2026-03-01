@@ -16,6 +16,7 @@
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/geography_py.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/messaging_py.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/mission_planner_py.dir
+/Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/sensor_data_py.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/test.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/joseroman/CLionProjects/GraduateProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
