@@ -291,4 +291,39 @@ pybind11_add_module(command_system
         CommandAndControl/pythonHelpers/python_c_hello_world.cpp
 )
 
+add_library(command_control_py
+        CommandAndControl/Messaging.cpp
+        CommandAndControl/Messaging.h
+        CommandAndControl/MissionPlanner.cpp
+        CommandAndControl/MissionPlanner.h
+        CommandAndControl/TargetTracker.cpp
+        CommandAndControl/TargetTracker.h
+        CommandAndControl/SensorData.cpp
+        CommandAndControl/SensorData.h
+        CommandAndControl/CommandExecutor.cpp
+        CommandAndControl/CommandExecutor.h
+        CommandAndControl/Geography.cpp
+        CommandAndControl/Geography.h
+        CommandAndControl/Types.h
+        CommandAndControl/GenerateScenario.cpp
+        CommandAndControl/GenerateScenario.h
+)
+
+target_link_libraries(GraduateProject
+        command_control_py
+)
+
+pybind11_add_module(command_executor_py
+        CommandAndControl/pythonHelpers/python_command_executor.cpp
+)
+
+target_include_directories(command_executor_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(command_executor_py
+        PRIVATE command_control_py
+)
+
 #### PYTHON
