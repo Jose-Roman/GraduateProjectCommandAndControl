@@ -365,5 +365,22 @@ target_link_libraries(geography_py
 ### GEOGRAPHY PY
 
 
+### MESSAGING PY
+pybind11_add_module(messaging_py
+        CommandAndControl/pythonHelpers/python_messaging.cpp
+)
+
+target_include_directories(messaging_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(messaging_py
+        PRIVATE command_control_py
+)
+
+### MESSAGING PY
+
+
 
 #### PYTHON
