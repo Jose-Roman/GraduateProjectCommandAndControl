@@ -382,5 +382,22 @@ target_link_libraries(messaging_py
 ### MESSAGING PY
 
 
+### MISSION_PLANNING PY
+pybind11_add_module(mission_planner_py
+        CommandAndControl/pythonHelpers/python_mission_planner.cpp
+)
+
+target_include_directories(mission_planner_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(mission_planner_py
+        PRIVATE command_control_py
+)
+
+### MISSION_PLANNING PY
+
+
 
 #### PYTHON
