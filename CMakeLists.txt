@@ -313,6 +313,8 @@ target_link_libraries(GraduateProject
         command_control_py
 )
 
+
+### COMMAND EXECUTOR PY
 pybind11_add_module(command_executor_py
         CommandAndControl/pythonHelpers/python_command_executor.cpp
 )
@@ -325,5 +327,24 @@ target_include_directories(command_executor_py
 target_link_libraries(command_executor_py
         PRIVATE command_control_py
 )
+
+### COMMAND EXECUTOR PY
+
+
+### GENERATE SCENARIO PY
+pybind11_add_module(generate_scenario_py
+        CommandAndControl/pythonHelpers/python_generate_scenario.cpp
+)
+
+target_include_directories(generate_scenario_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(generate_scenario_py
+        PRIVATE command_control_py
+)
+
+### GENERATE SCENARIO PY
 
 #### PYTHON
