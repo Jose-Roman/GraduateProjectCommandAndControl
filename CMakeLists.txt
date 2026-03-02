@@ -414,7 +414,21 @@ target_link_libraries(sensor_data_py
 
 ### SENSOR_DATA PY
 
+### TARGET_TRACKER PY
+pybind11_add_module(target_tracker_py
+        CommandAndControl/pythonHelpers/python_target_tracker.cpp
+)
 
+target_include_directories(target_tracker_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(target_tracker_py
+        PRIVATE command_control_py
+)
+
+### TARGET_TRACKER PY
 
 
 #### PYTHON
