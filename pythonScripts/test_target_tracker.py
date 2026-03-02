@@ -5,6 +5,8 @@ import messaging_py as messaging
 import geography_py as geo
 import target_tracker_py as tracker
 
+print("target_tracker_py module loaded")
+
 msg = messaging.Messaging()
 g = geo.Geography()
 

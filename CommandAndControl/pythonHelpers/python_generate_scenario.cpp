@@ -16,29 +16,12 @@
 #include "SensorData.h"
 #include "Geography.h"
 #include "CommandExecutor.h"
+#include "Types.h"
 
 namespace py = pybind11;
 
 PYBIND11_MODULE(generate_scenario_py, m) {
     m.doc() = "Python bindings for GenerateScenario";
-
-    //------------------------------------------------
-    // MissionArea Enum
-    //------------------------------------------------
-    py::enum_<MissionArea>(m, "MissionArea")
-        .value("LosAngeles", MissionArea::LosAngeles)
-        .value("Miami", MissionArea::Miami)
-        .value("NewYork", MissionArea::NewYork)
-        .export_values();
-
-    //------------------------------------------------
-    // TargetType Enum
-    //------------------------------------------------
-    py::enum_<TargetType>(m, "TargetType")
-        .value("Plane", TargetType::Plane)
-        .value("Ship", TargetType::Ship)
-        .value("Missile", TargetType::Missile)
-        .export_values();
 
     //------------------------------------------------
     // Mission Struct

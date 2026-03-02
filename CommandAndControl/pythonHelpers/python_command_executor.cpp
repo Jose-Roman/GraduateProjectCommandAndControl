@@ -13,6 +13,7 @@
 #include "CommandExecutor.h"
 #include "Messaging.h"
 #include "TargetTracker.h"
+#include "Types.h"
 
 namespace py = pybind11;
 

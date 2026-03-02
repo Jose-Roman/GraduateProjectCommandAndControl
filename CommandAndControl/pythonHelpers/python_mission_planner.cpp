@@ -18,21 +18,6 @@ PYBIND11_MODULE(mission_planner_py, m) {
 
     m.doc() = "Python bindings for MissionPlanner";
 
-    //--------------------------------------------------
-    // Enums
-    //--------------------------------------------------
-
-    py::enum_<MissionArea>(m, "MissionArea")
-        .value("LosAngeles", MissionArea::LosAngeles)
-        .value("NewYork", MissionArea::NewYork)
-        .value("Miami", MissionArea::Miami)
-        .export_values();
-
-    py::enum_<TargetType>(m, "TargetType")
-        .value("Plane", TargetType::Plane)
-        .value("Ship", TargetType::Ship)
-        .value("Missile", TargetType::Missile)
-        .export_values();
 
     //--------------------------------------------------
     // Mission Struct

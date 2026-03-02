@@ -11,26 +11,12 @@
 #include "Geography.h"
 #include "MissionPlanner.h"
 #include "TargetTracker.h"
+#include "Types.h"
 
 namespace py = pybind11;
 
 PYBIND11_MODULE(geography_py, m) {
     m.doc() = "Python bindings for Geography";
-
-    //------------------------------------------------
-    // Enums
-    //------------------------------------------------
-    py::enum_<MissionArea>(m, "MissionArea")
-        .value("LosAngeles", MissionArea::LosAngeles)
-        .value("NewYork",    MissionArea::NewYork)
-        .value("Miami",      MissionArea::Miami)
-        .export_values();
-
-    py::enum_<TargetType>(m, "TargetType")
-        .value("Plane",   TargetType::Plane)
-        .value("Ship",    TargetType::Ship)
-        .value("Missile", TargetType::Missile)
-        .export_values();
 
     //------------------------------------------------
     // GeoBounds Struct

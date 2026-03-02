@@ -314,6 +314,23 @@ target_link_libraries(GraduateProject
 )
 
 
+### TYPES PY
+pybind11_add_module(types_py
+        CommandAndControl/pythonHelpers/python_types.cpp
+)
+
+target_include_directories(types_py
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/CommandAndControl
+)
+
+target_link_libraries(types_py
+        PRIVATE command_control_py
+)
+
+### TYPES PY
+
+
 ### COMMAND EXECUTOR PY
 pybind11_add_module(command_executor_py
         CommandAndControl/pythonHelpers/python_command_executor.cpp
