@@ -24,16 +24,6 @@ PYBIND11_MODULE(generate_scenario_py, m) {
     m.doc() = "Python bindings for GenerateScenario";
 
     //------------------------------------------------
-    // Mission Struct
-    //------------------------------------------------
-    py::class_<Mission>(m, "Mission")
-        .def(py::init<>())
-        .def_readwrite("area", &Mission::area)
-        .def_readwrite("name", &Mission::name)
-        .def_readwrite("scenarioDuration", &Mission::scenarioDuration)
-        .def_readwrite("targetCounts", &Mission::targetCounts);
-
-    //------------------------------------------------
     // GenerateScenario Class
     //------------------------------------------------
     py::class_<GenerateScenario>(m, "GenerateScenario")
