@@ -5,6 +5,14 @@
 #include "Geography.h"
 #include <random>
 
+/**
+ * Returns the geographic bounding box for a given mission area.
+ *
+ * This function defines the operational region for a mission by providing
+ * minimum and maximum latitude and longitude values. These bounds are used
+ * to constrain simulated target generation within realistic geographic limits.
+ */
+
 GeoBounds Geography::getGioBounds(MissionArea& area) {
     switch (area) {
         case MissionArea::LosAngeles:
@@ -18,6 +26,13 @@ GeoBounds Geography::getGioBounds(MissionArea& area) {
     return {};
 }
 
+/**
+ *  Returns kinematic constraints for a given target type.
+ *
+ * Provides realistic ranges for altitude and speed based on the type
+ * of target being simulated (e.g., aircraft, ship, missile). These values
+ * are used to generate plausible motion characteristics for targets.
+ */
 GeoKinematics Geography::getGioKinematics(TargetType& track) {
     if (track == TargetType::Plane) {
         return {5000, 40000, 200, 600};
@@ -31,12 +46,19 @@ GeoKinematics Geography::getGioKinematics(TargetType& track) {
 
 }
 
+// Random double value within [min, max]
 double Geography::randomDouble(double min, double max) {
     static std::mt19937 rng(std::random_device{}());
     std::uniform_real_distribution<double> distribution(min, max);
     return distribution(rng);
 }
 
+/**
+* Returns a fixed sensor location for a given mission area.
+* Provides a representative geographic coordinate for a sensor within
+* the mission region. These coordinates are used as the origin point
+* for simulated sensor detections.
+*/
 sensorLocation Geography::getSensorLocation(MissionArea& area) {
     switch (area) {
         case MissionArea::LosAngeles:
@@ -50,6 +72,8 @@ sensorLocation Geography::getSensorLocation(MissionArea& area) {
     }
 }
 
+
+// Converts a string representation of a mission area into its enum value.
 MissionArea Geography::parseMissionArea(const std::string& areaStr) {
     if (areaStr == "LosAngeles") return MissionArea::LosAngeles;
     if (areaStr == "NewYork")    return MissionArea::NewYork;
