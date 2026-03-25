@@ -32,7 +32,7 @@ void MissionPlanner::setMission(const Mission &mission) {
     }
 }
 
-// Handles incoming target tracking messgaes
+// Handles incoming target tracking messages
 void MissionPlanner::onTargetReceived(const Message& msg) {
     std::cout << "[MissionPlanner] Target update received: "
                 << msg.payload << std::endl;
