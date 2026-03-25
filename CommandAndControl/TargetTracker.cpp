@@ -7,11 +7,19 @@
 #include <sstream>
 #include "Geography.h"
 
-// Constructor
+/**
+ * Constructs a TargetTracker
+ */
 TargetTracker::TargetTracker(Messaging &messaging, Geography& geography) : messaging_(messaging), geography_(geography) {
 }
 
-// Subscribes to sensor data messages so targets can be tracked
+/**
+ * Initializes the TargetTracker and subscribes to sensor data topics.
+ *
+ * Registers callbacks for both "sensor.data" and "sensor.target.detected"
+ * topics. When sensor messages are received, they are processed to create
+ * or update tracked targets.
+ */
 void TargetTracker::initialize() {
     messaging_.subscribe("sensor.data",
         [this](const Message& msg) {
@@ -27,7 +35,13 @@ void TargetTracker::initialize() {
                 << std::endl;
 }
 
-// Callback invoked when sensor data is received
+/**
+ * Callback handles incoming sensor data messages.
+ *
+ * Parses the incoming message payload to extract mission info.
+ * The target is stored in the active track list and a "target.update"
+ * message is published
+ */
 void TargetTracker::onSensorDataReceived(const Message& msg) {
     std::cout << "[TargetTracker] Sensor Data Received: "
                 << msg.payload << std::endl;
@@ -62,11 +76,6 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
     Message targetMsg;
     targetMsg.topic = "target.update";
 
-    //std::ostringstream payload;
-    //payload << "Target ID = " << track.id
-    //        << " Position = ("<< track.latitude  << ", " << track.longitude << ")";
-    //targetMsg.payload = payload.str();
-
     targetMsg.payload = serializeTarget(track);
 
     targetMsg.source = "TargetTracker";
@@ -74,10 +83,13 @@ void TargetTracker::onSensorDataReceived(const Message& msg) {
     messaging_.publish(targetMsg);
 }
 
-// Simulates basic target tracking logic
-// TODO : make a helper randomizer script that will generate simulated
-// data that gives us long, lat, etc position values to simulate
-// real world command and control environment
+/**
+ * Simulates basic target tracking logic
+ *
+ * Uses geographic bounds and kinematic constraints to generate realistic
+ * position, altitude, and speed values. Each target is assigned a unique ID.
+ * @return A fully initialized Target object
+ */
 Target TargetTracker::trackTarget(MissionArea area, TargetType track) {
     static int targetCounter = 0;
 
@@ -87,8 +99,7 @@ Target TargetTracker::trackTarget(MissionArea area, TargetType track) {
     Target target;
     target.id = ++targetCounter;
     target.type = track;
-    //target.x = 100.0;
-    //target.y = 200.0;
+
 
     target.latitude = geography_.randomDouble(bounds.minLatitude, bounds.maxLatitude);
     target.longitude = geography_.randomDouble(bounds.minLongitude,bounds.maxLongitude);
@@ -102,6 +113,10 @@ Target TargetTracker::trackTarget(MissionArea area, TargetType track) {
     return target;
 }
 
+/**
+ * Serializes a Target object into a string format.
+ * @return A string representation of the target
+ */
 std::string TargetTracker::serializeTarget(const Target& target) {
     std::ostringstream oss;
     oss << target.id << " "
@@ -114,6 +129,10 @@ std::string TargetTracker::serializeTarget(const Target& target) {
     return oss.str();
 }
 
+/**
+ * Deserializes a string into a Target object.
+ * @return Reconstructed Target object
+ */
 Target TargetTracker::deserializeTarget(const std::string& payload) {
     Target track;
     std::istringstream iss(payload);
@@ -130,6 +149,12 @@ Target TargetTracker::deserializeTarget(const std::string& payload) {
     return track;
 }
 
+/**
+ * Updates the position of an active target over time.
+ *
+ * Simulates target movement by updating latitude, longitude, and altitude
+ * over a specified duration.
+ */
 void TargetTracker::updateTrack(int targetId, int duration) {
 
     auto it = activeTracks_.find(targetId);
@@ -168,6 +193,12 @@ void TargetTracker::updateTrack(int targetId, int duration) {
     }
 }
 
+/**
+ * Defines how frequently a target should be updated based on its type.
+ * Faster-moving targets (e.g., missiles) have shorter update intervals.
+ *
+ * @return Update interval in seconds
+ */
 int TargetTracker::getUpdateInterval(TargetType type) {
     switch (type) {
         case TargetType::Plane:

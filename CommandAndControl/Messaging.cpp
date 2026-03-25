@@ -39,7 +39,7 @@ void Messaging::publish(Message& msg) {
 }
 
 /**
- * ubscribes a callback function to a specific topic.
+ * Subscribes a callback function to a specific topic.
  *
  * This function allows components to register interest in a particular
  * message topic. When a message with the matching topic is published,

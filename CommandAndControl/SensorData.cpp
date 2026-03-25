@@ -5,15 +5,32 @@
 #include "SensorData.h"
 #include <iostream>
 
-// Constructor
+/**
+ * Constructor for SensorData instance
+ *
+ * The SensorData component simulates a physical sensor system that generates
+ * raw environmental or detection data. It acts as the entry point of the
+ * command-and-control pipeline by publishing sensor observations to the
+ * messaging system.
+ */
 SensorData::SensorData(Messaging &messaging) : messaging_(messaging){}
 
-// Initialize the sensor system
+/**
+ * Initializes the sensor system.
+ *
+ * Prepares the sensor component for operation. In a real-world system,
+ * this could include hardware initialization, calibration, or network setup.
+ * In this simulation, it simply logs that the sensor is ready.
+ */
 void SensorData::initialize() {
     std::cout << "[SensorData] Sensor initialized" << std::endl;
 }
 
-// Simulates retriving data from the system
+/**
+ * Simulates retrieving data from a sensor.
+ *
+ * @return A SensorReading structure containing simulated sensor data
+ */
 SensorReading SensorData::readSensor() const {
     SensorReading reading;
     // TODO sensor name and value
@@ -23,7 +40,13 @@ SensorReading SensorData::readSensor() const {
     return reading;
 }
 
-// Publishes sensor data to the messaging system
+/**
+ * Publishes sensor data to the messaging system.
+ *
+ * Retrieves a simulated sensor reading and publishes it as a message
+ * under the "sensor.data" topic. This allows downstream components
+ * to process raw sensor information.
+ */
 void SensorData::publishSensorData() {
     SensorReading reading = readSensor();
     std::cout << "[SensorData] Sensor Reading: "
@@ -39,6 +62,9 @@ void SensorData::publishSensorData() {
     messaging_.publish(msg);
 }
 
+/**
+ * Alternative sensor startup method using string-based target types.
+ */
 void SensorData::startSensorTwo(const Mission& mission) {
     std::cout << "[SensorData] Starting Sensor for mission: "
                 << mission.name << std::endl;
@@ -58,7 +84,13 @@ void SensorData::startSensorTwo(const Mission& mission) {
     messaging_.publish(msg);
 }
 
-
+/**
+ * Starts the sensor simulation for a given mission.
+ *
+ * This function acts as the primary entry point for generating detection
+ * events. Publishes a series of "sensor.target.detected" messages
+ * based on the mission's target configuration.
+ */
 void SensorData::startSensor(const Mission& mission) {
     std::cout << "[SensorData] Starting Sensor for mission" << std::endl;
     std::string areaStr;

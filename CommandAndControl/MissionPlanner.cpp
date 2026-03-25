@@ -6,11 +6,21 @@
 #include "TargetTracker.h"
 #include <iostream>
 
-// Constructor
+/**
+ * Constructs a MissionPlanner instance.
+ *
+ * The MissionPlanner is responsible for generating mission-level decisions
+ * based on incoming target data. It consumes target updates and produces
+ * command messages that are executed downstream by the CommandExecutor.
+ */
 MissionPlanner::MissionPlanner(Messaging &messaging, TargetTracker &tracker)
             : messaging_(messaging), tracker_(tracker) {}
 
-// Registers the MissionPlanner to listen for target tracking updates
+/**
+ * Initializes the MissionPlanner and subscribes to target updates.
+ *
+ * This enables reactive, event-driven mission planning.
+ */
 void MissionPlanner::initialize() {
     messaging_.subscribe("target.update",
                             [this](const Message& msg) {
@@ -18,6 +28,13 @@ void MissionPlanner::initialize() {
                         });
 }
 
+/**
+ * Sets the current mission configuration.
+ *
+ * Stores mission parameters - area, target types, and counts.
+ * Immediately generates initial targets based on the mission definition
+ * and creates corresponding mission plans for each.
+ */
 void MissionPlanner::setMission(const Mission &mission) {
     currentMission_ = mission;
     std::cout << "[MissionPlanner] Mission set to: "
@@ -32,7 +49,13 @@ void MissionPlanner::setMission(const Mission &mission) {
     }
 }
 
-// Handles incoming target tracking messages
+/**
+ * Callback handler for incoming target update messages.
+ *
+ * Triggered when a "target.update" message is received. The function
+ * deserializes the target data from the message payload and invokes
+ * mission planning logic for that target.
+ */
 void MissionPlanner::onTargetReceived(const Message& msg) {
     std::cout << "[MissionPlanner] Target update received: "
                 << msg.payload << std::endl;
@@ -43,7 +66,16 @@ void MissionPlanner::onTargetReceived(const Message& msg) {
     planMission(target);
 }
 
-// Generates a simple mission plan based on the target
+/**
+ * @brief Generates and publishes a mission plan for a given target.
+ *
+ * This function simulates decision-making logic by analyzing the target's
+ * position, altitude, and speed. It increments the target update count,
+ * logs relevant information, and creates a command message for execution.
+ *
+ * The generated command is serialized and published to the
+ * "command.execute" topic for the CommandExecutor to process.
+ */
 void MissionPlanner::planMission(Target &track) {
     track.numOfUpdates = ++track.numOfUpdates;
     std::cout << "[MissionPlanner] Planning Mission for Target: "
@@ -67,6 +99,11 @@ void MissionPlanner::planMission(Target &track) {
     messaging_.publish(commandMsg);
 }
 
+/**
+ * Generates a mission plan based on mission area context.
+ *
+ * This function simulates different mission descriptions based on area.
+ */
 void MissionPlanner::planMissionArea(Target &target) {
     target.numOfUpdates = ++target.numOfUpdates;
 

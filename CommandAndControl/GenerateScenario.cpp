@@ -8,16 +8,6 @@
 
 #include "Geography.h"
 
-//
-// Created by Jose Roman  on 1/9/26.
-//
-
-#include "GenerateScenario.h"
-#include "SensorData.h"
-#include <iostream>
-
-#include "Geography.h"
-
 /**
  * Constructs a GenerateScenario instance.
  *
