@@ -6,7 +6,7 @@ import mission_planner_py as planner
 from run_mission import runMission
 
 NewYork = planner.Mission()
-NewYork.area = types.MissionArea.Miami
+NewYork.area = types.MissionArea.NewYork
 NewYork.name = "New York Scenario 2"
 
 NewYork.targetCounts = {
