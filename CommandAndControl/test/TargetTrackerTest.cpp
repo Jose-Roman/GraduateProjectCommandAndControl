@@ -35,7 +35,7 @@ TEST_F(TargetTrackerTest, UpdateTrackIncrementsUpdateCounter)
 
     targetTracker.addActiveTrack(t);
 
-    targetTracker.updateTrack(t.id, 30);  // 30 seconds
+    targetTracker.updateTrack(t.id, 30, MissionArea::LosAngeles);  // 30 seconds
 
     Target updated = targetTracker.getActiveTrack(t.id);
 
@@ -52,7 +52,7 @@ TEST_F(TargetTrackerTest, UpdateTrackChangesPosition)
 
     targetTracker.addActiveTrack(t);
 
-    targetTracker.updateTrack(t.id, 30);
+    targetTracker.updateTrack(t.id, 30, MissionArea::LosAngeles);
 
     Target updated = targetTracker.getActiveTrack(t.id);
 
@@ -60,3 +60,26 @@ TEST_F(TargetTrackerTest, UpdateTrackChangesPosition)
                 updated.longitude != lonBefore);
 }
 
+TEST_F(TargetTrackerTest, UpdateTrack_OutOfBoundsTarget)
+{
+    // Create a valid target first
+    Target t = targetTracker.trackTarget(MissionArea::LosAngeles,
+                                         TargetType::Plane);
+
+    // Force it OUTSIDE Los Angeles bounds
+    // LA bounds: {33.7, 34.4, -118.9, -117.6}
+    t.latitude = 35.0;     // outside max latitude
+    t.longitude = -120.0;  // outside min longitude
+
+    t.numOfUpdates = 0;
+
+    targetTracker.addActiveTrack(t);
+
+    // Run update
+    targetTracker.updateTrack(t.id, 120, MissionArea::LosAngeles);
+
+    Target updated = targetTracker.getActiveTrack(t.id);
+
+    // Expect only 1 update
+    EXPECT_EQ(updated.numOfUpdates, 1);
+}

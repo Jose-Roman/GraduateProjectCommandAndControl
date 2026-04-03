@@ -62,10 +62,22 @@ static int lua_set_duration(lua_State* L) {
     return 0;
 }
 
+static int lua_set_mission_location(lua_State* L) {
+    if (!g_command_executor)
+        return luaL_error(L, "Command Executor not registered");
+    int areaInt = luaL_checkinteger(L, 1);
+
+    MissionArea missionArea = static_cast<MissionArea>(areaInt);
+    g_command_executor->setMissionLocation(missionArea);
+
+    return 0;
+}
+
 static const luaL_Reg CommandExecutorFunctions[] = {
     {"initialize", lua_command_executor_initialize},
     {"execute_command", lua_execute_command},
     {"set_duration", lua_set_duration},
+    {"set_mission_location", lua_set_mission_location},
     {nullptr, nullptr}
 };
 

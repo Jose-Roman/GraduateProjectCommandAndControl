@@ -29,6 +29,7 @@ GenerateScenario::GenerateScenario(SensorData& sensor, Geography& geography, Com
 void GenerateScenario::setFullMission(Mission newMission) {
     mission_ = newMission;
     commandExecutor_.setScenarioDuration(mission_.scenarioDuration);
+    commandExecutor_.setMissionLocation(mission_.area);
 }
 
 /**

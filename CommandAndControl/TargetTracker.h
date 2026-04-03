@@ -38,7 +38,7 @@ class TargetTracker {
 
         // simulates the target tracking logic
         Target trackTarget(MissionArea area, TargetType track);
-        void updateTrack(int targetId, int duration);
+        void updateTrack(int targetId, int duration, MissionArea msnArea);
 
         int getUpdateInterval(TargetType type);
 

@@ -53,7 +53,7 @@ void CommandExecutor::onCommandReceived(const Message &msg) const {
     Target track = tracker_.deserializeTarget(msg.payload);
 
     // update track
-    tracker_.updateTrack(track.id, missionDuration_);
+    tracker_.updateTrack(track.id, missionDuration_, missionArea_);
 }
 
 /**
@@ -73,4 +73,8 @@ void CommandExecutor::executeCommand(const std::string &command) {
  */
 void CommandExecutor::setScenarioDuration(int scenarioDuration) {
     missionDuration_ = scenarioDuration;
+}
+
+void CommandExecutor::setMissionLocation(MissionArea area) {
+    missionArea_ = area;
 }

@@ -28,5 +28,7 @@ PYBIND11_MODULE(command_executor_py, m) {
 
         .def("execute_command", &CommandExecutor::executeCommand)
 
-        .def("set_scenario_duration", &CommandExecutor::setScenarioDuration);
+        .def("set_scenario_duration", &CommandExecutor::setScenarioDuration)
+
+        .def("set_mission_location", &CommandExecutor::setMissionLocation);
 }

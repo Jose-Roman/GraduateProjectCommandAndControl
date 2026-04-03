@@ -155,7 +155,7 @@ Target TargetTracker::deserializeTarget(const std::string& payload) {
  * Simulates target movement by updating latitude, longitude, and altitude
  * over a specified duration.
  */
-void TargetTracker::updateTrack(int targetId, int duration) {
+void TargetTracker::updateTrack(int targetId, int duration, MissionArea msnArea) {
 
     auto it = activeTracks_.find(targetId);
 
@@ -175,6 +175,9 @@ void TargetTracker::updateTrack(int targetId, int duration) {
 
     int maxUpdates = duration / deltaTimeSec;
 
+    // Get geographic bounds for mission area
+    GeoBounds bounds = geography_.getGioBounds(msnArea);
+
     for (int i = 0; i < maxUpdates; i++) {
         // Simplified lat/long update
         target.latitude += (distance * std::cos(headingRadians)) * 1e-5 ;
@@ -183,6 +186,24 @@ void TargetTracker::updateTrack(int targetId, int duration) {
         target.altitude += geography_.randomDouble(-5.0, 5.0);
 
         target.numOfUpdates++;
+
+        // Check if in bounds
+        bool outOfBounds =
+            target.latitude < bounds.minLatitude ||
+            target.latitude > bounds.maxLatitude ||
+            target.longitude < bounds.minLongitude ||
+            target.longitude > bounds.maxLongitude;
+
+        if (outOfBounds) {
+            std::cout << "[TargetTracker] Target #" << target.id
+            << " exited mission area at ("
+            << target.latitude << ", "
+            << target.longitude << ")"
+            << std::endl;
+
+            // stop tracking
+            break;
+        }
 
         std::cout << "[TargetTracker] Target #" << target.id << " Update #"
         << target.numOfUpdates << ""
