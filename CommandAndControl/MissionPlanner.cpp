@@ -120,5 +120,8 @@ void MissionPlanner::planMissionArea(Target &target) {
         case MissionArea::Miami:
             std::cout << "[MissionPlanner] Miami: Dense urban airspace coordination" << std::endl;
             break;
+        case MissionArea::Fullerton:
+            std::cout << "[MissionPlanner] Fullerton: Dense urban airspace coordination" << std::endl;
+            break;
     }
 }

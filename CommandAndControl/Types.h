@@ -10,7 +10,8 @@
 enum class MissionArea {
     LosAngeles,
     NewYork,
-    Miami
+    Miami,
+    Fullerton
 };
 
 enum class TargetType {

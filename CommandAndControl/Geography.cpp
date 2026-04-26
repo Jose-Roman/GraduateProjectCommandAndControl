@@ -21,6 +21,8 @@ GeoBounds Geography::getGioBounds(MissionArea& area) {
             return {25.3, 26.1, -80.9, -80.0};
         case MissionArea::NewYork:
             return {40.4, 41.0, -74.5, -73.6};
+        case MissionArea::Fullerton:
+            return {33.8, 33.92, -118.02, -117.85};
     }
 
     return {};
@@ -62,11 +64,13 @@ double Geography::randomDouble(double min, double max) {
 sensorLocation Geography::getSensorLocation(MissionArea& area) {
     switch (area) {
         case MissionArea::LosAngeles:
-            return {34.0522, -118.2437};  //Downtown LA
+            return {34.0522, -118.2437};  // Downtown LA
         case MissionArea::Miami:
-            return {25.7617, -80.1918};   //Downtown Miami
+            return {25.7617, -80.1918};   // Downtown Miami
         case MissionArea::NewYork:
             return {40.7128, -74.0060};   // Manhattan
+        case MissionArea::Fullerton:
+            return {33.8704, -117.9242};  // Downtown Fullerton
         default:
             return {0,0};
     }
@@ -78,6 +82,7 @@ MissionArea Geography::parseMissionArea(const std::string& areaStr) {
     if (areaStr == "LosAngeles") return MissionArea::LosAngeles;
     if (areaStr == "NewYork")    return MissionArea::NewYork;
     if (areaStr == "Miami")      return MissionArea::Miami;
+    if (areaStr == "Fullerton")  return MissionArea::Fullerton;
 
     throw std::runtime_error("Invalid MissionArea: " + areaStr);
 }

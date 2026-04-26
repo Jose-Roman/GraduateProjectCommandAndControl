@@ -101,6 +101,9 @@ void SensorData::startSensor(const Mission& mission) {
             areaStr = "Miami"; break;
         case MissionArea::NewYork:
             areaStr = "NewYork"; break;
+        case MissionArea::Fullerton:
+            areaStr = "Fullerton"; break;
+
     }
 
     for (const auto& [type, count] : mission.targetCounts) {

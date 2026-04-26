@@ -9,6 +9,7 @@ PYBIND11_MODULE(types_py, m) {
         .value("LosAngeles", MissionArea::LosAngeles)
         .value("NewYork", MissionArea::NewYork)
         .value("Miami", MissionArea::Miami)
+        .value("Fullerton", MissionArea::Fullerton)
         .export_values();
 
     py::enum_<TargetType>(m, "TargetType")
